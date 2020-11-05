@@ -12,24 +12,14 @@ export class Search extends Component {
         }
     }
 
-    componentDidMount() {
-        SEARCH_SERVICE
-            .getSearchedBooks(this.state.query)
-            .then(responseFromAPI => {
-                console.log(responseFromAPI)
-                this.setState({ searchResult: responseFromAPI.data })
-            })
-            .catch(err => console.log(err))
-    }
     
     handleSearch = async (event) => {
         await this.setState({
-            search: event.target.value.toLowerCase()
+            query: event.target.value.toLowerCase()
         })
         SEARCH_SERVICE
             .getSearchedBooks(this.state.query)
             .then(q => {
-                console.log({ query: q.data })
                 this.setState({
                     searchResult: q.data
                 })
@@ -38,13 +28,13 @@ export class Search extends Component {
     }
 
     render() {
-        console.log(this.state.query)
+        // console.log(this.state.searchResult)
         return (
             <div>
-                <input placeholder='Search' type='text' value={this.state.query} onChange={this.handleSearch}></input>
+                <input placeholder='Search' name='query' type='text' value={this.state.query} onChange={this.handleSearch}></input>
             </div>
         )
     }
 }
 
-export default Search
+export default Search;
