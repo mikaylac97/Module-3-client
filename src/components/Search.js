@@ -28,7 +28,8 @@ export class Search extends Component {
     }
 
     render() {
-        // console.log(this.state.searchResult)
+        console.log(this.state.query)
+        console.log(this.state.searchResult)
         return (
             <div>
                 <input placeholder='Search' name='query' type='text' value={this.state.query} onChange={this.handleSearch}></input>

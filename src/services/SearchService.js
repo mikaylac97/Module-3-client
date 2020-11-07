@@ -1,14 +1,16 @@
 import axios from 'axios'
+const baseURL = 'http://localhost:3001'
 
 const service = axios.create({
-    baseURL: `https://www.googleapis.com/books/v1/volumes`
+    baseURL,
+    withCredentials: true
 });
 
 const SEARCH_SERVICE = {
     service,
 
     getSearchedBooks(query) {
-        return service.get(`?q=${query}`)
+        return service.post(`/api/book-search?q=${query}`)
     }
 }
 
