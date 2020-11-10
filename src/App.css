@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+
+/*  NAVBAR STYLES  */
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-links {
+  color: black;
+  margin: 0px 20px;
+}
+
+.nav-links:hover {
+  text-decoration: none;
+}
+
+/*  SEARCH STYLES  */
+

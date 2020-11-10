@@ -26,12 +26,12 @@ export default class Login extends React.Component {
       .then(responseFromServer => {
         // console.log(responseFromServer.data)
         const { user } = responseFromServer.data;
-        console.log(this.props)
+        // console.log(this.props)
         // Lift the user object to the App.js
-        this.props.onUserChange(user);
+        // this.props.onUserChange(user);
 
         // Redirect user to home page after successful sign up
-        this.props.history.push('/home');
+        this.props.history.push(`/profile/${user._id}`);
       })
       .catch(err => {
         if (err.response && err.response.data) {

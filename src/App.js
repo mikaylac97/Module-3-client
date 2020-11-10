@@ -8,6 +8,10 @@ import AUTH_SERVICE from './services/AuthService'
 import Search from './components/Search'
 // import UserModel from '../../server-boilerplate-with-passport/models/User.model'
 import UserProfile from './components/UserProfile'
+import NavBar from './components/NavBar'
+import AccountDetails from './components/AccountDetails'
+// import SearchResults from './components/SearchContainer'
+// import SearchContainer from './components/SearchContainer'
 
 export default class App extends Component {
 
@@ -33,12 +37,15 @@ export default class App extends Component {
     return (
       <div>
       <BrowserRouter>
+      <NavBar />
           <Switch>
             <Route exact path='/' component={Landing} />
-            <Route exact path='/search' component={Search} />
+            <Route exact path='/search' render={props => <Search {...props} />} />
             <Route exact path='/signup' render={props => <Signup {...props} />} />
             <Route exact path='/login' render={props => <Login {...props} />} />
             <Route exact path='/profile/:accountId' component={UserProfile} />
+            <Route exact path='/account/:accountId' component={AccountDetails} />
+            {/* <Route exact path='/results' render={props => <SearchContainer {...props} />} /> */}
           </Switch>
       </BrowserRouter>
       </div>

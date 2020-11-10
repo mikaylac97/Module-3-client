@@ -3,25 +3,29 @@ import SEARCH_SERVICE from '../services/SearchService'
 
 export class Search extends Component {
 
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-            searchResult: [],
-            query: ''
-        }
+constructor(props) {
+    super(props)
+
+    this.state = {
+         searchResult: [],
+         query: ''
     }
+}
 
     
-    handleSearch = async (event) => {
-        await this.setState({
-            query: event.target.value.toLowerCase()
+    handleInput = (event) => {
+        this.setState({
+            query: event.target.value
         })
-        SEARCH_SERVICE
-            .getSearchedBooks(this.state.query)
-            .then(q => {
+    }
+
+
+    handleSearch = () => {
+       SEARCH_SERVICE
+            .getSearchedBooks(this.state.query.toLowerCase())
+            .then(responseFromDB => {
                 this.setState({
-                    searchResult: q.data
+                    searchResult: responseFromDB.data
                 })
             })
             .catch(err => console.log(err))
@@ -31,9 +35,10 @@ export class Search extends Component {
         console.log(this.state.query)
         console.log(this.state.searchResult)
         return (
-            <div>
-                <input placeholder='Search' name='query' type='text' value={this.state.query} onChange={this.handleSearch}></input>
-            </div>
+            <form className="form-inline" onChange={this.handleSearch}>
+                <input placeholder='Search' className="form-control mr-sm-2" name='query' type='search' value={this.state.query} onChange={this.handleInput} />
+                <button className="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+            </form>
         )
     }
 }
