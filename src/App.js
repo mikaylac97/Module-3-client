@@ -6,6 +6,8 @@ import Signup from './components/Authentication/Signup'
 import Login from './components/Authentication/Login'
 import AUTH_SERVICE from './services/AuthService'
 import Search from './components/Search'
+// import UserModel from '../../server-boilerplate-with-passport/models/User.model'
+import UserProfile from './components/UserProfile'
 
 export default class App extends Component {
 
@@ -36,6 +38,7 @@ export default class App extends Component {
             <Route exact path='/search' component={Search} />
             <Route exact path='/signup' render={props => <Signup {...props} />} />
             <Route exact path='/login' render={props => <Login {...props} />} />
+            <Route exact path='/profile/:accountId' component={UserProfile} />
           </Switch>
       </BrowserRouter>
       </div>

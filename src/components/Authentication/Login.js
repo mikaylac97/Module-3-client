@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import AUTH_SERVICE from '../../services/AuthService';
 
@@ -6,7 +7,8 @@ export default class Login extends React.Component {
   state = {
     email: '',
     password: '',
-    message: null
+    message: null,
+    loggedInUser: []
   };
 
   handleInputChange = event => {
@@ -14,12 +16,6 @@ export default class Login extends React.Component {
     this.setState({ [name]: value });
   };
 
-  // ES6 destructuring - the same as above:
-  // handleInputChange = ({ target: { name, value } }) => {
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
 
   handleFormSubmission = event => {
     event.preventDefault();
@@ -28,13 +24,14 @@ export default class Login extends React.Component {
 
     AUTH_SERVICE.login({ email, password })
       .then(responseFromServer => {
+        // console.log(responseFromServer.data)
         const { user } = responseFromServer.data;
-
+        console.log(this.props)
         // Lift the user object to the App.js
         this.props.onUserChange(user);
 
         // Redirect user to home page after successful sign up
-        this.props.history.push('/');
+        this.props.history.push('/home');
       })
       .catch(err => {
         if (err.response && err.response.data) {
@@ -44,6 +41,7 @@ export default class Login extends React.Component {
   };
 
   render() {
+    // console.log(this.state.loggedInUser)
     return (
       <>
         <section>
@@ -71,8 +69,8 @@ export default class Login extends React.Component {
                 onChange={this.handleInputChange}
               />
             </label>
-
-            <button> Login </button>
+            <button type='submit'> Login </button>
+            
           </form>
 
           {/* if the message is not NULL then show the message */}
