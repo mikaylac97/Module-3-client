@@ -10,6 +10,7 @@ import Search from './components/Search'
 import UserProfile from './components/UserProfile'
 import NavBar from './components/NavBar'
 import AccountDetails from './components/AccountDetails'
+import Bookshelves from './components/Bookshelves'
 // import SearchResults from './components/SearchContainer'
 // import SearchContainer from './components/SearchContainer'
 
@@ -45,6 +46,7 @@ export default class App extends Component {
             <Route exact path='/login' render={props => <Login {...props} />} />
             <Route exact path='/profile/:accountId' component={UserProfile} />
             <Route exact path='/account/:accountId' component={AccountDetails} />
+            <Route exact path='/shelves/:accountId' component={Bookshelves} />
             {/* <Route exact path='/results' render={props => <SearchContainer {...props} />} /> */}
           </Switch>
       </BrowserRouter>

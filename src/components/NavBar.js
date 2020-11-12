@@ -57,7 +57,7 @@ export default class NavBar extends Component {
                             <Link className='nav-links' to='/home'>Home</Link>
                         </li>
                         <li>
-                            <Link className='nav-links' to='/shelves'>My Shelves</Link>
+                            <Link className='nav-links' to={`/shelves/${this.state.user_id}`}>My Shelves</Link>
                         </li>
                         <li>
                         <div class="dropdown">

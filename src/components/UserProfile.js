@@ -24,7 +24,7 @@ export default class UserProfile extends Component {
         ACCOUNT_SERVICE
             .getUserProfile(params.accountId)
             .then(responseFromApi => {
-                // console.log(responseFromApi)
+                console.log(responseFromApi.data)
                 this.setState({
                     isLoggedInUser: responseFromApi.data.authorized,
                     profile_picture: responseFromApi.data.user.photo,
@@ -42,7 +42,7 @@ export default class UserProfile extends Component {
 
 
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <div>
                 user: {this.state.userName}
@@ -55,7 +55,7 @@ export default class UserProfile extends Component {
                 <br />
                 bookshelves - 
                 <br />
-                has read: {this.state.has_read}
+                {/* has read: {this.state.has_read}
                 <br />
                 wants to read: {this.state.want_to_read}
                 <br />
@@ -64,10 +64,10 @@ export default class UserProfile extends Component {
                         <div>
                             {review.numOfStars}
                             {review.content}
-                            {review.book}
+                            {review.book ? review.book : ''}
                         </div>
                     )
-                })}
+                })} */}
             </div>
         )
     }
