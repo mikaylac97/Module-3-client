@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ACCOUNT_SERVICE from '../services/UserInfoService'
 
 export default class UserProfile extends Component {
@@ -44,8 +45,7 @@ export default class UserProfile extends Component {
     render() {
         // console.log(this.state)
         return (
-            <div>
-                user: {this.state.userName}
+                /* user: {this.state.userName}
                 <br />
                 followers: {this.state.followers.length}
                 <br />
@@ -54,8 +54,8 @@ export default class UserProfile extends Component {
                 profile_picture: <img src={this.state.profile_picture} alt='avi' />
                 <br />
                 bookshelves - 
-                <br />
-                {/* has read: {this.state.has_read}
+                <br /> */
+                /* has read: {this.state.has_read}
                 <br />
                 wants to read: {this.state.want_to_read}
                 <br />
@@ -67,8 +67,22 @@ export default class UserProfile extends Component {
                             {review.book ? review.book : ''}
                         </div>
                     )
-                })} */}
-            </div>
+                })} */
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col-lg-9'>
+                            <div>
+                                <img src={this.state.profile_picture} alt='user-avi' className='user-avi'/>
+                            </div>
+                            <div>
+                                <h2>{this.state.userName}</h2>
+                                {this.state.isLoggedInUser && <p><Link to='/'>edit profile</Link></p>}
+                            </div>
+                        </div>
+                        <div className='col-lg-3'>Test 2</div>
+                    </div>
+                </div>
+           
         )
     }
 }
