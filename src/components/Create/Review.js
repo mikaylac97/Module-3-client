@@ -7,7 +7,7 @@ export default class Review extends Component {
                 <form>
                     <label>
                         Stars / 5
-                        <input type='number' name='rating' />
+                        <input type='number' min='0' max='5' name='rating' />
                     </label>
                     <label>
                         Review

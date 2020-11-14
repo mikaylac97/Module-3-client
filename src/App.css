@@ -89,3 +89,8 @@ ul {
 .user-avi {
   width: 20%;
 }
+
+.profile-links {
+  display: flex;
+  flex-direction: column;
+}

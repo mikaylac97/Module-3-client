@@ -35,7 +35,8 @@ export default class UserProfile extends Component {
                     reviews: responseFromApi.data.user.reviews,
                     discussions: responseFromApi.data.user.discussions,
                     followers: responseFromApi.data.user.followers,
-                    following: responseFromApi.data.user.following
+                    following: responseFromApi.data.user.following,
+                    bio: responseFromApi.data.user.bio
                 })
             })
             .catch(err => console.log(err))
@@ -43,7 +44,7 @@ export default class UserProfile extends Component {
 
 
     render() {
-        // console.log(this.state)
+       
         return (
                 /* user: {this.state.userName}
                 <br />
@@ -79,7 +80,27 @@ export default class UserProfile extends Component {
                                 {this.state.isLoggedInUser && <p><Link to='/'>edit profile</Link></p>}
                             </div>
                         </div>
-                        <div className='col-lg-3'>Test 2</div>
+                        <div className='col-lg-3'>
+                            <div>
+                                <ul className='profile-links'>
+                                    <li>
+                                        <Link to={`/reviews/${this.props.match.params.accountId}`}>Reviews</Link>
+                                    </li>
+                                    <li>
+                                        <Link to={`/discussions/${this.props.match.params.accountId}`}>Discussions</Link>
+                                    </li>
+                                    <li>
+                                        <Link to={`/followers/${this.props.match.params.accountId}`}>Followers</Link>
+                                    </li>
+                                    <li>
+                                        <Link to={`/following/${this.props.match.params.accountId}`}>Following</Link>
+                                    </li>
+                                    <li>
+                                        <Link to={`/shelves/${this.props.match.params.accountId}`}>Shelves</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
            

@@ -18,18 +18,35 @@ export default class AccountDetails extends Component {
                 .getUserProfile(params.accountId)
                 .then(responseFromAPI => {
                     this.setState({
-                        userAccountInfo: responseFromAPI.data,
+                        userAccountInfo: responseFromAPI.data.user,
                         isLoggedInUser: responseFromAPI.data.authorized
                     })
                 })
     }
     render() {
-        console.log(this.state.userAccountInfo)
         return (
             <>
                 {this.state.isLoggedInUser && 
                 <div>
-                    testing 
+                <form>
+                    <label>
+                        Email Address
+                        <input type='email' placeholder={`${this.state.userAccountInfo.email}`}/>
+                    </label>
+                    {/* <label>
+                        First Name
+                        <input type='text' placeholder={`${this.state.userAccountInfo.email}`}/>
+                    </label> */}
+                    <label>
+                        User Name
+                        <input type='text' placeholder={`${this.state.userAccountInfo.username}`}/>
+                    </label>
+                    <label>
+                        Bio
+                        <input type='text' placeholder={`${this.state.userAccountInfo.bio}`}/>
+                    </label>
+                    <button>Save Profile Settings</button>
+                </form>
                 </div>
                 }
             </>
