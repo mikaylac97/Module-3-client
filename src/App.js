@@ -27,16 +27,22 @@ export default class App extends Component {
   }
 
   componentDidMount = () => {
-    Promise.all(AUTH_SERVICE.getAuthenticatedUser())
+    console.log('component mounted', {AUTH_SERVICE});
+    AUTH_SERVICE.getAuthenticatedUser()
     .then(responseFromServer => {
       
-      console.log(responseFromServer)
+      console.log({responseFromServer: responseFromServer.data})
 
-      // this.setState({
-      //   currentUser: user
-      // })
+      this.setState({
+        currentUser: responseFromServer.data
+      })
     })
     .catch(err => console.log(err))
+  }
+
+  updateUser = user => {
+    console.log({user})
+    this.setState({ currentUser: user });
   }
 
   render() {
@@ -44,12 +50,12 @@ export default class App extends Component {
     return (
       <div>
       <BrowserRouter>
-      <NavBar />
+      <NavBar user={this.state.currentUser} onUserChange={this.updateUser}/>
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route exact path='/search' render={props => <Search {...props} />} />
             <Route exact path='/signup' render={props => <Signup {...props} />} />
-            <Route exact path='/login' render={props => <Login {...props} />} />
+            <Route exact path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />
             <Route exact path='/profile/:accountId' component={UserProfile} />
             <Route exact path='/account/:accountId' component={AccountDetails} />
             <Route exact path='/shelves/:accountId' component={Bookshelves} />

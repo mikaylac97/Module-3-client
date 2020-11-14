@@ -9,11 +9,11 @@ import '../App.css'
 export default class NavBar extends Component {
     state = {
         isLoggedIn: false,
-        user_id: ''
+        user_id: this.props.user?._id || null
     }
 
     componentDidMount() {
-        this.getLoggedInUser();
+        // this.getLoggedInUser();
     }
 
     getLoggedInUser = () => {
@@ -32,24 +32,31 @@ export default class NavBar extends Component {
     }
 
     handleLogout = () => {
+        console.log('route called')
         AUTH_SERVICE
             .logout()
-            .then(this.setState({
-                isLoggedIn: false
-            }))
+            .then(() => {
+                console.log('logged out!');
+                this.props.onUserChange(null);
+            //     this.setState({
+            //     isLoggedIn: false
+            // })
+            // this.props.history.push('/');
+        })
             .catch(err => console.log(err))
     }
 
+    
 
 
     render() {
-        console.log(this.state.isLoggedIn)
+        console.log({props: this.props})
         return (
             <nav className="navbar navbar-light" >
                 <div>
                     BOOKR.
                 </div>
-                {this.state.isLoggedIn && 
+                {this.props.user && 
                 <>
                     <div>
                     <ul>
@@ -60,11 +67,11 @@ export default class NavBar extends Component {
                             <Link className='nav-links' to={`/shelves/${this.state.user_id}`}>My Shelves</Link>
                         </li>
                         <li>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div className="dropdown">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Account
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <Link className="dropdown-item" to={`/profile/${this.state.user_id}`}>Profile</Link>
                                 <Link className="dropdown-item" to={`/account/${this.state.user_id}`}>Account Details</Link>
                                 <Link className="dropdown-item" to='/' onClick={this.handleLogout}>Logout</Link>
@@ -78,7 +85,7 @@ export default class NavBar extends Component {
                 </div>
                 </>
             }
-            {!this.state.isLoggedIn &&
+            {this.props.user === null  &&
                 <div>
                     <button><Link to='/login'>Log In</Link></button>
                     <button><Link to='/signup'>Sign Up</Link></button>
