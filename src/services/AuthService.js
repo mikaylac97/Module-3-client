@@ -1,9 +1,9 @@
 import axios from 'axios'
-const baseURL = 'https://boookr.herokuapp.com'
-
+const baseURL = process.env.REACT_APP_DOMAINURL
+// const baseURL = 'https://boookr.herokuapp.com'
 const service = axios.create({
     baseURL,
-    // withCredentials: true
+    withCredentials: true
 });
 
 const AUTH_SERVICE = {
@@ -18,6 +18,7 @@ const AUTH_SERVICE = {
         return service.post('/api/logout', {})
     },
     getAuthenticatedUser() {
+        console.log({baseURL, env: process.env})
         return service.get('/api/isLoggedIn')
     }
 }

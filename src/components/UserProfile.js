@@ -20,14 +20,14 @@ export default class UserProfile extends Component {
         this.getUserDetails();
     }
 
-    getUserDetails = () => {
-        const { params } = this.props.match;
+    getUserDetails =  () => {
+        const { params } = this.props.match
         ACCOUNT_SERVICE
             .getUserProfile(params.accountId)
             .then(responseFromApi => {
-                console.log(responseFromApi.data)
+                console.log(responseFromApi);
                 this.setState({
-                    isLoggedInUser: this.props.user._id.toString() === params.accountId.toString(),
+                    // isLoggedInUser: this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString(),
                     profile_picture: responseFromApi.data.user.photo,
                     userName: responseFromApi.data.user.username,
                     has_read: responseFromApi.data.user.hasRead,
@@ -44,7 +44,12 @@ export default class UserProfile extends Component {
 
 
     render() {
-       console.log(this.state.isLoggedInUser)
+        // console.log(this.props.user?._id)
+        console.log(this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString())
+        // console.log(this.state.isLoggedInUser)
+        // console.log({user: this.props?.user?.user?._id, params: this.props.match.params.accountId})
+        if (!this.props.user?.user?._id) return  <div>Loading....</div>
+        const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
         return (
     
                 <div className='container'>
@@ -55,7 +60,7 @@ export default class UserProfile extends Component {
                             </div>
                             <div>
                                 <h2>{this.state.userName}</h2>
-                                {this.state.isLoggedInUser && <p><Link to='/'>edit profile</Link></p>}
+                                {isMyProfile && <p><Link to='/'>edit profile</Link></p>}
                             </div>
                         </div>
                         <div className='col-lg-3'>

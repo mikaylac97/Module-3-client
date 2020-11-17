@@ -32,8 +32,8 @@ export default class NavBar extends Component {
         console.log('route called')
         AUTH_SERVICE
             .logout()
-            .then(() => {
-                console.log('logged out!');
+            .then((blah) => {
+                console.log('logged out!', {blah});
                 this.props.onUserChange(null);
             //     this.setState({
             //     isLoggedIn: false
