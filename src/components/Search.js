@@ -38,7 +38,7 @@ constructor(props) {
         return (
             <div className='search-container'>
             <form className="form-inline" onChange={this.handleSearch}>
-                <input placeholder='Search' className="form-control mr-sm-2" name='query' type='search' autocomplete="off" value={this.state.query} onChange={this.handleInput} />
+                <input placeholder='Search' className="form-control mr-sm-2" name='query' type='search' autoComplete="off" value={this.state.query} onChange={this.handleInput} />
                 <button className="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
             </form>
 

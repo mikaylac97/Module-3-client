@@ -3,7 +3,7 @@ const baseURL = 'https://boookr.herokuapp.com'
 
 const service = axios.create({
     baseURL,
-    withCredentials: true
+    // withCredentials: true
 });
 
 const AUTH_SERVICE = {

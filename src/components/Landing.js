@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavBar from './NavBar'
+// import NavBar from './NavBar'
 // import Signup from './Authentication/Signup'
 // import Login from './Authentication/Login'
 // import Search from './Search'

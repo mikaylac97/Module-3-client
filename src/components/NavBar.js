@@ -2,34 +2,31 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import AUTH_SERVICE from '../services/AuthService'
 import Search from './Search'
-import Login from './Authentication/Login'
-import Signup from './Authentication/Signup'
 import '../App.css'
 
 export default class NavBar extends Component {
-    state = {
-        isLoggedIn: false,
-        user_id: this.props.user?._id || null
-    }
+    // state = {
+    //     user_id: this.props.user?._id || null
+    // }
 
-    componentDidMount() {
-        // this.getLoggedInUser();
-    }
+    // componentDidMount() {
+    //     this.getLoggedInUser();
+    // }
 
-    getLoggedInUser = () => {
-        AUTH_SERVICE
-            .getAuthenticatedUser()
-            .then(responseFromDB => {
-                responseFromDB.data.user ? 
-                this.setState({
-                    isLoggedIn: true,
-                    user_id: responseFromDB.data.user._id
-                }) :
-                this.setState({
-                    isLoggedIn: false
-                })
-            })
-    }
+    // getLoggedInUser = () => {
+    //     AUTH_SERVICE
+    //         .getAuthenticatedUser()
+    //         .then(responseFromDB => {
+    //             responseFromDB.data.user ? 
+    //             this.setState({
+    //                 isLoggedIn: true,
+    //                 user_id: responseFromDB.data.user._id
+    //             }) :
+    //             this.setState({
+    //                 isLoggedIn: false
+    //             })
+    //         })
+    // }
 
     handleLogout = () => {
         console.log('route called')
@@ -64,7 +61,7 @@ export default class NavBar extends Component {
                             <Link className='nav-links' to='/home'>Home</Link>
                         </li>
                         <li>
-                            <Link className='nav-links' to={`/shelves/${this.state.user_id}`}>My Shelves</Link>
+                            <Link className='nav-links' to={`/shelves/${this.props.user._id}`}>My Shelves</Link>
                         </li>
                         <li>
                         <div className="dropdown">
@@ -72,8 +69,8 @@ export default class NavBar extends Component {
                                Account
                             </button>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <Link className="dropdown-item" to={`/profile/${this.state.user_id}`}>Profile</Link>
-                                <Link className="dropdown-item" to={`/account/${this.state.user_id}`}>Account Details</Link>
+                                <Link className="dropdown-item" to={`/profile/${this.props.user._id}`}>Profile</Link>
+                                <Link className="dropdown-item" to={`/account/${this.props.user._id}`}>Account Details</Link>
                                 <Link className="dropdown-item" to='/' onClick={this.handleLogout}>Logout</Link>
                             </div>
                         </div>

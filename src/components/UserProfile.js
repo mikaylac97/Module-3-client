@@ -27,7 +27,7 @@ export default class UserProfile extends Component {
             .then(responseFromApi => {
                 console.log(responseFromApi.data)
                 this.setState({
-                    isLoggedInUser: responseFromApi.data.authorized,
+                    isLoggedInUser: this.props.user._id.toString() === params.accountId.toString(),
                     profile_picture: responseFromApi.data.user.photo,
                     userName: responseFromApi.data.user.username,
                     has_read: responseFromApi.data.user.hasRead,
@@ -44,31 +44,9 @@ export default class UserProfile extends Component {
 
 
     render() {
-       
+       console.log(this.state.isLoggedInUser)
         return (
-                /* user: {this.state.userName}
-                <br />
-                followers: {this.state.followers.length}
-                <br />
-                following: {this.state.following.length}
-                <br />
-                profile_picture: <img src={this.state.profile_picture} alt='avi' />
-                <br />
-                bookshelves - 
-                <br /> */
-                /* has read: {this.state.has_read}
-                <br />
-                wants to read: {this.state.want_to_read}
-                <br />
-                reviews: {this.state.reviews.map(review => {
-                    return (
-                        <div>
-                            {review.numOfStars}
-                            {review.content}
-                            {review.book ? review.book : ''}
-                        </div>
-                    )
-                })} */
+    
                 <div className='container'>
                     <div className='row'>
                         <div className='col-lg-9'>
@@ -107,3 +85,5 @@ export default class UserProfile extends Component {
         )
     }
 }
+
+

@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'https://boookr.herokuapp.com/'
+const baseURL = 'https://boookr.herokuapp.com'
 
 const service = axios.create({
     baseURL,
