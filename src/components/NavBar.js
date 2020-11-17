@@ -61,7 +61,7 @@ export default class NavBar extends Component {
                             <Link className='nav-links' to='/home'>Home</Link>
                         </li>
                         <li>
-                            <Link className='nav-links' to={`/shelves/${this.props.user._id}`}>My Shelves</Link>
+                            <Link className='nav-links' to={`/shelves/${this.props.user?.user?._id}`}>My Shelves</Link>
                         </li>
                         <li>
                         <div className="dropdown">
@@ -69,8 +69,8 @@ export default class NavBar extends Component {
                                Account
                             </button>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <Link className="dropdown-item" to={`/profile/${this.props.user._id}`}>Profile</Link>
-                                <Link className="dropdown-item" to={`/account/${this.props.user._id}`}>Account Details</Link>
+                                <Link className="dropdown-item" to={`/profile/${this.props.user?.user?._id}`}>Profile</Link>
+                                <Link className="dropdown-item" to={`/account/${this.props.user?.user?._id}`}>Account Details</Link>
                                 <Link className="dropdown-item" to='/' onClick={this.handleLogout}>Logout</Link>
                             </div>
                         </div>

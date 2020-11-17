@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import SEARCH_SERVICE from '../services/SearchService'
 
 export class Search extends Component {
@@ -33,7 +34,7 @@ constructor(props) {
     }
 
     render() {
-        console.log(this.state.query)
+        // console.log(this.state.query)
         console.log(this.state.searchResult)
         return (
             <div className='search-container'>
@@ -47,7 +48,7 @@ constructor(props) {
                     return(
                         <div className='single-result'>
                             {/* <img src={searchResult.volumeInfo.imageLinks?.smallThumbnail} alt='book-thumbnail' className='book-thumbnail'/> */}
-                            {searchResult.volumeInfo.title}
+                            <Link to={`/details/${searchResult?.id}`}>{searchResult.volumeInfo.title}</Link>
                         </div>
                     )
                 })}

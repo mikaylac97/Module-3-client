@@ -12,6 +12,9 @@ const SEARCH_SERVICE = {
 
     getSearchedBooks(query) {
         return service.post(`/api/book-search?q=${query}`)
+    },
+    getBookDetails(bookId){
+        return service.get(`/api/details/${bookId}`)
     }
 }
 

@@ -14,6 +14,10 @@ const ACCOUNT_SERVICE = {
         return service.get(`/api/account/${accountId}`)
     },
 
+    getTimeline(){
+        return service.get('/api/posts')
+    },
+
     editAccountDetails() {
         return service.post(`/api/account/edit`)
     },

@@ -17,7 +17,7 @@ export default class Discussions extends Component {
             .getUserProfile(this.props.match.params.accountId)
             .then(userFromDB => {
                 this.setState({
-                    isLoggedIn: userFromDB.data.authorized,
+                    // isLoggedIn: userFromDB.data.authorized,
                     discussions: userFromDB.data.user.discussions
                 })
             })
@@ -26,8 +26,10 @@ export default class Discussions extends Component {
 
 
     render() {
-        console.log(this.state.isLoggedIn)
+        // console.log(this.state.isLoggedIn)
         console.log(this.state.discussions)
+        const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
+        console.log(isMyProfile)
         return (
             <div>
                 
