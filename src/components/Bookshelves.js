@@ -40,7 +40,7 @@ export default class Bookshelves extends Component {
                     <h1>Books user has read</h1>
                     {this.state.booksHasRead.map(book => {
                         return (
-                            <div>
+                            <div key={book._id}>
                                 <h2>{book.title}</h2>
                                 <h3>{book.subtitle}</h3>
                                 <h4>{book.authors.map(author => author)}</h4>
@@ -54,7 +54,7 @@ export default class Bookshelves extends Component {
                     <h1>Books user wants to read</h1>
                     {this.state.booksWantsToRead.map(book => {
                         return(
-                            <div>
+                            <div key={book._id}>
                                 <h2>{book.title}</h2>
                                 <h3>{book.subtitle}</h3>
                                 <h4>{book.authors.map(author => author)}</h4>

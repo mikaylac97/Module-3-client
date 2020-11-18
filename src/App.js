@@ -18,7 +18,8 @@ import Followers from './components/Followers'
 import Following from './components/Following'
 import BookDetails from './components/BookDetails'
 import Timeline from './components/Timeline'
-
+// import CreateReview from './components/Create/Review'
+// import CreateDiscussion from './components/Create/Discussion'
 
 export default class App extends Component {
 
@@ -60,15 +61,17 @@ export default class App extends Component {
             <Route exact path='/profile/:accountId' render={props => <UserProfile {...props} user={this.state.currentUser} onUserChange={this.updateUser} /> }/>
             <Route exact path='/account/:accountId' component={AccountDetails} />
             <Route exact path='/shelves/:accountId' component={Bookshelves} />
-            <Route exact path='/discuss/:bookId' component={Discussion} />
+            <Route exact path='/discuss/:bookId' render={props => <Discussion {...props} user={this.state.currentUser} />} />
             <Route exact path='/discussions/:accountId' render={props => <Discussions {...props} user={this.state.currentUser} onUserChange={this.updateUser} /> } /> 
-            <Route exact path='/review/:bookId' component={Review} />
-            <Route exact path='/reviews/:accountId' component={Reviews} />
+            <Route exact path='/review/:bookId' render={props => <Review {...props} user={this.state.currentUser} />} />
+            <Route exact path='/reviews/:accountId' render={props => <Reviews {...props} user={this.state.currentUser} />} />
             <Route exact path='/followers/:accountId' component={Followers} />
             <Route exact path='/following/:accountId' component={Following} />
             <Route exact path='/details/:bookId' component={BookDetails} />
             {/* <Route exact path='/home' render={props => <Timeline {...props} user={this.state.currentUser} /> } /> */}
             <Route exact path='/home' component={Timeline} />
+            {/* <Route exact path='/review/:bookId' render={props => <CreateReview {...props} user={this.state.currentUser} />} />
+            <Route exact path='/discuss/:bookId' render={props => <CreateDiscussion {...props} user={this.state.currentUser} />} /> */}
           </Switch>
       
       </div>

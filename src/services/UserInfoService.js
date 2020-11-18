@@ -60,6 +60,10 @@ const ACCOUNT_SERVICE = {
 
     postReviewToBook(bookId) {
         return service.post(`/api/review/${bookId}`)
+    },
+
+    startDiscussion(bookId) {
+        return service.post(`/start-discussion/${bookId}`)
     }
 
 }

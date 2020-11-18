@@ -32,7 +32,16 @@ export default class Discussions extends Component {
         console.log(isMyProfile)
         return (
             <div>
-                
+                {this.state.discussions.map(discussion => {
+                    return(
+                        <div key={discussion._id}>
+                            <h2>{discussion.title}</h2>
+                            <h4>Regarding: {discussion.book.title} By: {discussion.book.authors}</h4>
+                            <p>{discussion.content}</p>
+                            
+                        </div>
+                    )
+                })}
             </div>
         )
     }

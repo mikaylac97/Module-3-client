@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ACCOUNT_SERVICE from '../services/UserInfoService'
 
 export default class Followers extends Component {
@@ -23,9 +24,17 @@ export default class Followers extends Component {
             .catch(err => console.log(err))
     }
     render() {
+        console.log(this.state.followers)
         return (
             <div>
-                
+                {this.state.followers.map(follower => {
+                    return(
+                        <div key={follower._id}>
+                            <img src={follower.photo} alt='follower-avi' />
+                            <Link to={`/profile/${follower._id}`}><p>{follower.username}</p></Link>
+                        </div>
+                    )
+                })}
             </div>
         )
     }
