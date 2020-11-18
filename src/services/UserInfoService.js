@@ -4,7 +4,7 @@ const baseURL = process.env.REACT_APP_DOMAINURL
 
 const service = axios.create({
     baseURL,
-    // withCredentials: true
+    withCredentials: true
 });
 
 const ACCOUNT_SERVICE = {
@@ -18,12 +18,12 @@ const ACCOUNT_SERVICE = {
         return service.get('/api/posts')
     },
 
-    editAccountDetails() {
-        return service.post(`/api/account/edit`)
+    editAccountDetails(newAccountDetails) {
+        return service.post(`/api/account/edit`, newAccountDetails)
     },
 
     deleteAccount() {
-        return service.post(`/api/delete-account`)
+        return service.post(`/api/delete-account`, {})
     },
 
     getUsersShelves(accountId) {
@@ -38,32 +38,32 @@ const ACCOUNT_SERVICE = {
         return service.get(`/api/want-to-read/${accountId}`)
     },
 
-    addBookToHasReadList(bookId) {
-        return service.post(`/api/add-to-has-read/${bookId}`)
+    addBookToHasReadList(bookId, bookData) {
+        return service.post(`/api/add-to-has-read/${bookId}`, bookData)
     },
 
-    addBookToWantToReadList(bookId) {
-        return service.post(`/api/add-to-want-to-read/${bookId}`)
+    addBookToWantToReadList(bookId, bookData) {
+        return service.post(`/api/add-to-want-to-read/${bookId}`, bookData)
     },
 
     removeBookFromWantToReadList(bookId) {
-        return service.post(`/api/remove-want-book/${bookId}`)
+        return service.post(`/api/remove-want-book/${bookId}`), {}
     },
 
     removeBookFromHasReadList(bookId) {
-        return service.post(`/api/remove-has-book/${bookId}`)
+        return service.post(`/api/remove-has-book/${bookId}`, {})
     },
 
     getUsersReviews(userId) {
         return service.get(`/api/reviews/${userId}`)
     },
 
-    postReviewToBook(bookId) {
-        return service.post(`/api/review/${bookId}`)
+    postReviewToBook(bookId, newReview) {
+        return service.post(`/api/review/${bookId}`, newReview)
     },
 
-    startDiscussion(bookId) {
-        return service.post(`/start-discussion/${bookId}`)
+    startDiscussion(bookId, discussion) {
+        return service.post(`/start-discussion/${bookId}`, discussion)
     }
 
 }

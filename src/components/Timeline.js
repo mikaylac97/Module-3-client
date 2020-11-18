@@ -3,7 +3,7 @@ import ACCOUNT_SERVICE from '../services/UserInfoService'
 
 export default class Timeline extends Component {
     state = {
-        isLoggedIn: false
+        usersTheyFollowAndPosts: []
     }
 
     componentDidMount(){
@@ -13,10 +13,16 @@ export default class Timeline extends Component {
     getUsersTimeline = () => {
         ACCOUNT_SERVICE
             .getTimeline()
-            .then(responseFromDB => console.log(responseFromDB))
+            .then(responseFromDB => {
+                this.setState({
+                    usersTheyFollowAndPosts: responseFromDB.data
+                })
+            })
             .catch(err => console.log(err))
     }
     render() {
+        console.log(this.state.usersTheyFollowAndPosts)
+        // const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
         return (
             <div>
                 

@@ -4,7 +4,7 @@ import ACCOUNT_SERVICE from '../services/UserInfoService'
 export default class AccountDetails extends Component {
 
     state = {
-        isLoggedInUser: false,
+        // isLoggedInUser: false,
         userAccountInfo: []
     }
 
@@ -13,22 +13,35 @@ export default class AccountDetails extends Component {
     }
 
     retreiveUserInfo = () => {
-        const { params } = this.props.match;
+        // const { params } = this.props.match;
             ACCOUNT_SERVICE
-                .getUserProfile(params.accountId)
+                .getUserProfile(this.props?.user?.user?._id)
                 .then(responseFromAPI => {
+                    // console.log(responseFromAPI.data.user)
                     this.setState({
-                        userAccountInfo: responseFromAPI.data.user,
-                        isLoggedInUser: responseFromAPI.data.authorized
+                        userAccountInfo: responseFromAPI.data.user
+                        // isLoggedInUser: responseFromAPI.data.authorized
                     })
                 })
     }
+
+    handleSubmission = () => {
+
+        ACCOUNT_SERVICE
+            .editAccountDetails()
+            .then(editedUser => console.log(editedUser))
+            .catch(err => console.log(err))
+    }
+
+
     render() {
+        console.log(this.state.userAccountInfo)
+        const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
         return (
             <>
-                {this.state.isLoggedInUser && 
+                {isMyProfile && 
                 <div>
-                <form>
+                <form onSubmit={this.handleSubmission}>
                     <label>
                         Email Address
                         <input type='email' placeholder={`${this.state.userAccountInfo.email}`}/>
@@ -41,11 +54,15 @@ export default class AccountDetails extends Component {
                         User Name
                         <input type='text' placeholder={`${this.state.userAccountInfo.username}`}/>
                     </label>
-                    <label>
+                    {/* <label>
                         Bio
                         <input type='text' placeholder={`${this.state.userAccountInfo.bio}`}/>
+                    </label> */}
+                    <label>
+                        Input password to change details
+                        <input type='password' placeholder='*******' autoComplete='off'/>
                     </label>
-                    <button>Save Profile Settings</button>
+                    <button type='submit'>Save Profile Settings</button>
                 </form>
                 </div>
                 }
