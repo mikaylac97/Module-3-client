@@ -25,6 +25,7 @@ export default class UserProfile extends Component {
         ACCOUNT_SERVICE
             .getUserProfile(params.accountId)
             .then(responseFromApi => {
+                this.props.onUserChange(responseFromApi.data.user)
                 console.log(responseFromApi);
                 this.setState({
                     isLoggedInUser: true,
