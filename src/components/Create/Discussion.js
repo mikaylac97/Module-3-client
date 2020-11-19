@@ -5,7 +5,7 @@ export default class Discussion extends Component {
 
     state = {
         title: '',
-        discussion: ''
+        content: ''
     }
 
     handleInputChange = event => {
@@ -13,11 +13,11 @@ export default class Discussion extends Component {
         this.setState({ [name]: value });
     }
 
-    handleSubmission = () => {
+    handleSubmission = (event) => {
         const { bookId } = this.props.match.params
-        const { title, discussion } = this.state
+        const { title, content } = this.state
         ACCOUNT_SERVICE
-            .startDiscussion(bookId)
+            .startDiscussion(bookId, {title, content})
             .then(response => this.props.history.push(`/discussions/${this.props.user?.user?._id}`))
             .catch(err => console.log(err))
     }
@@ -32,7 +32,7 @@ export default class Discussion extends Component {
                     </label>
                     <label>
                         Discussion: 
-                        <input type='text' name='discussion' value={this.state.discussion} onChange={this.handleInputChange}/>
+                        <input type='text' name='content' value={this.state.content} onChange={this.handleInputChange}/>
                     </label>
                     <button type='submit'>Start Discussion</button>
                 </form>

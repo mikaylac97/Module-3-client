@@ -3,7 +3,7 @@ import ACCOUNT_SERVICE from '../services/UserInfoService'
 
 export default class Discussions extends Component {
     state = {
-        isLoggedIn: false,
+        // isLoggedIn: false,
         discussions: []
     }
 

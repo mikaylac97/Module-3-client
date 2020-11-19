@@ -29,7 +29,7 @@ export default class App extends Component {
     discussions: []
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     // console.log('component mounted', {AUTH_SERVICE});
     this.updateUser();
   }
@@ -44,7 +44,7 @@ export default class App extends Component {
       })
     })
     .catch(err => { 
-      console.log(err);
+      console.log('error in update user', err);
       this.setState({currentUser: null});
     });
   }
