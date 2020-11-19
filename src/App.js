@@ -38,7 +38,7 @@ export default class App extends Component {
     // this.setState({ currentUser: user })
     AUTH_SERVICE.getAuthenticatedUser()
     .then(responseFromServer => {
-      console.log(responseFromServer)
+      console.log(`auth user in App.js ${responseFromServer}`)
       this.setState({
         currentUser: responseFromServer.data
       })

@@ -27,7 +27,7 @@ export default class UserProfile extends Component {
             .then(responseFromApi => {
                 console.log(responseFromApi);
                 this.setState({
-                    // isLoggedInUser: this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString(),
+                    isLoggedInUser: true,
                     profile_picture: responseFromApi.data.user.photo,
                     userName: responseFromApi.data.user.username,
                     has_read: responseFromApi.data.user.hasRead,
@@ -48,7 +48,8 @@ export default class UserProfile extends Component {
         console.log(this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString())
         // console.log(this.state.isLoggedInUser)
         // console.log({user: this.props?.user?.user?._id, params: this.props.match.params.accountId})
-        if (!this.props.user?.user?._id) return  <div>Loading....</div>
+        // if (!this.props.user?.user?._id) return  <div>Loading....</div>
+        if (!this.state.isLoggedInUser) return <div>Loading...</div>
         const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
         return (
     
