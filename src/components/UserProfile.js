@@ -46,6 +46,7 @@ export default class UserProfile extends Component {
 
     render() {
         // console.log(this.props.user?._id)
+        console.log({props: this.props})
         console.log(this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString())
         // console.log(this.state.isLoggedInUser)
         // console.log({user: this.props?.user?.user?._id, params: this.props.match.params.accountId})
