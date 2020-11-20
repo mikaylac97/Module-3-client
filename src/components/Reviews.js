@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ACCOUNT_SERVICE from '../services/UserInfoService'
 
 export default class Reviews extends Component {
     state = {
         // isLoggedInUser: false,
-        reviewContainer: [],
-        reviews: {
-            info: [],
-            editMode: false,
-            numOfStars: 0,
-            content: ''
-        }
+        reviews: []
+        // editMode: false
 
     }
 
@@ -31,30 +27,30 @@ export default class Reviews extends Component {
             .catch(err => console.log(err))
     }
 
-    handleInputChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value }); 
-    }
+    // handleInputChange = (event) => {
+    //     const { name, value } = event.target;
+    //     this.setState({ [name]: value }); 
+    // }
 
-    handleEditMode = (event) => {
-        this.setState({
-            editMode: true
-        })
-    }
+    // handleEditMode = (event) => {
+    //     this.setState({
+    //         editMode: true
+    //     })
+    // }
 
-    saveEditChanges = (event) => {
-        event.preventDefault();
+    // saveEditChanges = (event) => {
+    //     event.preventDefault();
 
-        const { numOfStars, content } = this.state
-        ACCOUNT_SERVICE
-            .updateReview(event.target.id, { numOfStars, content })
-            .then(updatedReview => this.props.history.push(`/reviews/${this.props.user?.user?._id}`))
-            .catch(err => console.log(err))
-    }
+    //     const { numOfStars, content } = this.state
+    //     ACCOUNT_SERVICE
+    //         .updateReview(event.target.id, { numOfStars, content })
+    //         .then(updatedReview => this.props.history.push(`/reviews/${this.props.user?.user?._id}`))
+    //         .catch(err => console.log(err))
+    // }
 
-    deleteReview = () => {
+    // deleteReview = () => {
 
-    }
+    // }
 
 
 
@@ -65,7 +61,7 @@ export default class Reviews extends Component {
         // console.log(this.state.isLoggedInUser)
         return (
             <div>
-                {/* {this.state.reviews.map(review => {
+                {this.state.reviews.map(review => {
                     return(
                 <div key={review._id}>
                     {!this.state.editMode &&
@@ -75,13 +71,13 @@ export default class Reviews extends Component {
                         <p>book reviewing: {review.book?.title}</p>
                         </div>
                     }
-                    {isMyProfile && !this.state.editMode && 
+                    {isMyProfile &&  
                         <div>
-                            <button id={review._id} onClick={(event) => this.handleEditMode(event.target.id)}>Edit</button>
+                            <button id={review._id}><Link to={`/reviewinfo/${review._id}`}>Edit</Link></button>
                             <button>Delete</button>
                         </div>
                     }
-                        {isMyProfile && this.state.editMode && 
+                        {/* {isMyProfile &&  
                         <div key={review._id}>
                             <form>
                                 <label>
@@ -95,10 +91,10 @@ export default class Reviews extends Component {
                                 <button id={review._id} type='submit' onClick={(event) => this.updateReview(event.target.id)}>Save Changes</button>
                             </form>
                         </div>     
-                        }
+                        } */}
                 </div>
                     )
-                })} */}
+                })}
             </div>
         )
     }

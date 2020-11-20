@@ -11,7 +11,9 @@ import NavBar from './components/NavBar'
 import AccountDetails from './components/AccountDetails'
 import Bookshelves from './components/Bookshelves'
 import Discussion from './components/Create/Discussion'
+import DiscussionDetails from './components/DiscussionDetails'
 import Review from './components/Create/Review'
+import ReviewDetails from './components/ReviewDetails'
 import Reviews from './components/Reviews'
 import Discussions from './components/Discussions'
 import Followers from './components/Followers'
@@ -68,12 +70,14 @@ export default class App extends Component {
             <Route exact path='/account/:accountId' render={props => <AccountDetails {...props} user={this.state.currentUser} onUserChange={this.updateUser} />} />
             <Route exact path='/shelves/:accountId' component={Bookshelves} />
             <Route exact path='/discuss/:bookId' render={props => <Discussion {...props} user={this.state.currentUser} />} />
-            <Route exact path='/discussions/:accountId' render={props => <Discussions {...props} user={this.state.currentUser} onUserChange={this.updateUser} /> } /> 
+            <Route exact path='/discussions/:accountId' render={props => <Discussions {...props} user={this.state.currentUser} onUserChange={this.updateUser} /> } />
+            <Route exact path='/discussinfo/:discussionId' render={props => <DiscussionDetails {...props} user={this.state.currentUser} />} /> 
             <Route exact path='/review/:bookId' render={props => <Review {...props} user={this.state.currentUser} />} />
+            <Route exact path='/reviewinfo/:reviewId' render={props => <ReviewDetails {...props} user={this.state.currentUser} />} />
             <Route exact path='/reviews/:accountId' render={props => <Reviews {...props} user={this.state.currentUser} onUserChange={this.updateUser}/>} />
             <Route exact path='/followers/:accountId' component={Followers} />
             <Route exact path='/following/:accountId' component={Following} />
-            <Route exact path='/details/:bookId' component={BookDetails} />
+            <Route exact path='/bookinfo/:bookId' component={BookDetails} />
             {/* <Route exact path='/home' render={props => <Timeline {...props} user={this.state.currentUser} /> } /> */}
             <Route exact path='/home' render={props => <Timeline {...props} user={this.state.currentUser} />} />
             {/* <Route exact path='/review/:bookId' render={props => <CreateReview {...props} user={this.state.currentUser} />} />

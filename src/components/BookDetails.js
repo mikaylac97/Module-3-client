@@ -16,7 +16,7 @@ export default class BookDetails extends Component {
         SEARCH_SERVICE
             .getBookDetails(this.props.match.params.bookId)
             .then(bookFromDB => {
-                // console.log(bookFromDB.data)
+                console.log(bookFromDB.data)
                 this.setState({
                     book: bookFromDB.data
                 })

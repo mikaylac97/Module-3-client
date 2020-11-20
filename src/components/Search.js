@@ -48,7 +48,7 @@ constructor(props) {
                     return(
                         <div className='single-result'>
                             {/* <img src={searchResult.volumeInfo.imageLinks?.smallThumbnail} alt='book-thumbnail' className='book-thumbnail'/> */}
-                            <Link to={`/details/${searchResult?.id}`}>{searchResult.volumeInfo.title}</Link>
+                            <Link to={`/bookinfo/${searchResult?.id}`}>{searchResult.volumeInfo.title}</Link>
                         </div>
                     )
                 })}

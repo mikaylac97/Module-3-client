@@ -75,7 +75,7 @@ const ACCOUNT_SERVICE = {
 
     viewSingleReview(reviewId){
         return service.get(`/api/review/${reviewId}`)
-    },
+    },                
 
     updateReview(reviewId, editedReview){
         return service.post(`/api/review/edit/${reviewId}`, editedReview)
