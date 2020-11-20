@@ -19,6 +19,7 @@ export default class Bookshelves extends Component {
         ACCOUNT_SERVICE
             .getUserProfile(params.accountId)
             .then(responseFromDB => {
+                console.log(responseFromDB.data.user)
                 this.setState({
                     booksHasRead: responseFromDB.data.user.hasRead,
                     booksWantsToRead: responseFromDB.data.user.wantToRead,
@@ -31,8 +32,25 @@ export default class Bookshelves extends Component {
             .catch(err => console.log(err))
     }
 
+    removeBookFromWantShelf = (event) => {
+        // console.log(event)
+        ACCOUNT_SERVICE
+            .removeBookFromWantToReadList(event.target.id)
+            .then(responseFromDB => this.props.history.push(`/shelves/${this.props.match.params.accountId}`))
+            .catch(err => console.log(err))
+    }
+
+    removeBookFromHasReadShelf = (event) => {
+        ACCOUNT_SERVICE
+            .removeBookFromHasReadList(event.target.id)
+            .then(responseFromDB => this.props.history.push(`/shelves/${this.props.match.params.accountId}`))
+            .catch(err => console.log(err))
+    }
+
+
 
     render() {
+        console.log(this.state.booksHasRead)
         return (
             <div>
                 {this.state.booksHasRead.length > 0 && 
@@ -45,6 +63,7 @@ export default class Bookshelves extends Component {
                                 <h3>{book.subtitle}</h3>
                                 <h4>{book.authors.map(author => author)}</h4>
                                 <p>{book.description}</p>
+                                <button onClick={this.removeBookFromHasReadShelf} id={book._id}>Remove Book</button>
                             </div>
                         )
                     })}
@@ -59,6 +78,7 @@ export default class Bookshelves extends Component {
                                 <h3>{book.subtitle}</h3>
                                 <h4>{book.authors.map(author => author)}</h4>
                                 <p>{book.description}</p>
+                                <button onClick={this.removeBookFromWantShelf} id={book._id}>Remove Book</button>
                             </div>
                         )
                     })}

@@ -26,7 +26,7 @@ export default class UserProfile extends Component {
             .getUserProfile(params.accountId)
             .then(responseFromApi => {
                 this.props.onUserChange(responseFromApi.data.user)
-                console.log(responseFromApi);
+                // console.log(responseFromApi);
                 this.setState({
                     isLoggedInUser: true,
                     profile_picture: responseFromApi.data.user.photo,
@@ -43,15 +43,24 @@ export default class UserProfile extends Component {
             .catch(err => console.log(err))
     }
 
+    handleFollowAndUnfollow = () => {
+        ACCOUNT_SERVICE
+            .followAndUnfollow(this.props.match.params.accountId)
+            .then(responseFromApi => this.props.onUserChange(responseFromApi.data.updatedCurrentUser))
+            .catch(err => console.log(err))
+    }
+
 
     render() {
         // console.log(this.props.user?._id)
-        console.log('props', this.props)
-        console.log(this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString())
+        // console.log('props', this.props)
+        // console.log(this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString())
         // console.log(this.state.isLoggedInUser)
         // console.log({user: this.props?.user?.user?._id, params: this.props.match.params.accountId})
         // if (!this.props.user?.user?._id) return  <div>Loading....</div>
         if (!this.state.isLoggedInUser) return <div>Loading...</div>
+        const isFollowing = this.props?.user?.user?.following.includes(this.props.match.params.accountId)
+        // console.log(this.state.following)
         const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
         return (
     
@@ -64,11 +73,26 @@ export default class UserProfile extends Component {
                             <div>
                                 <h2>{this.state.userName}</h2>
                                 {isMyProfile && <p><Link to='/'>edit profile</Link></p>}
+                                <p>{this.state.bio}</p>
                             </div>
+                            {/* <div>
+                                <div>
+                                    <h3>Has Read</h3>
+                                </div>
+                                <div>
+                                    <h3></h3>
+                                </div>
+                            </div> */}
                         </div>
                         <div className='col-lg-3'>
                             <div>
                                 <ul className='profile-links'>
+                                {!isMyProfile && isFollowing && <li>
+                                    <button onClick={this.handleFollowAndUnfollow}>Unfollow</button>
+                                </li>}
+                                {!isMyProfile && !isFollowing && <li>
+                                    <button onClick={this.handleFollowAndUnfollow}>Follow</button>
+                                </li>}
                                     <li>
                                         <Link to={`/reviews/${this.props.match.params.accountId}`}>Reviews</Link>
                                     </li>

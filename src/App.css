@@ -94,3 +94,9 @@ ul {
   display: flex;
   flex-direction: column;
 }
+
+/* TIMELINE STYLES */
+
+.usr-avi-timeline {
+  width: 3vw;
+}

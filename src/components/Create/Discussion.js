@@ -14,11 +14,12 @@ export default class Discussion extends Component {
     }
 
     handleSubmission = (event) => {
+        event.preventDefault();
         const { bookId } = this.props.match.params
         const { title, content } = this.state
         ACCOUNT_SERVICE
             .startDiscussion(bookId, {title, content})
-            .then(response => this.props.history.push(`/discussions/${this.props.user?.user?._id}`))
+            .then(response => {this.props.history.push(`/discussions/${this.props.user?.user?._id}`)})
             .catch(err => console.log(err))
     }
 

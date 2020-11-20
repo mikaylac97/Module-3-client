@@ -7,6 +7,13 @@ const service = axios.create({
     withCredentials: true
 });
 
+const image_service = axios.create({
+    baseURL,
+    withCredentials: true,
+    headers: { "Content-Type": "multipart/form-data" }
+});
+
+
 const ACCOUNT_SERVICE = {
     service,
 
@@ -26,6 +33,10 @@ const ACCOUNT_SERVICE = {
         return service.post(`/api/delete-account`, {})
     },
 
+    followAndUnfollow(accountId) {
+        return service.post(`/api/follow/${accountId}`, {})
+    },
+
     getUsersShelves(accountId) {
         return service.get(`/api/shelves/${accountId}`)
     },
@@ -38,16 +49,16 @@ const ACCOUNT_SERVICE = {
         return service.get(`/api/want-to-read/${accountId}`)
     },
 
-    addBookToHasReadList(bookId, bookData) {
-        return service.post(`/api/add-to-has-read/${bookId}`, bookData)
+    addBookToHasReadList(bookId) {
+        return service.post(`/api/add-to-has-read/${bookId}`, {})
     },
 
-    addBookToWantToReadList(bookId, bookData) {
-        return service.post(`/api/add-to-want-to-read/${bookId}`, bookData)
+    addBookToWantToReadList(bookId) {
+        return service.post(`/api/add-to-want-to-read/${bookId}`, {})
     },
 
     removeBookFromWantToReadList(bookId) {
-        return service.post(`/api/remove-want-book/${bookId}`), {}
+        return service.post(`/api/remove-want-book/${bookId}`, {}) 
     },
 
     removeBookFromHasReadList(bookId) {
@@ -63,7 +74,7 @@ const ACCOUNT_SERVICE = {
     },
 
     startDiscussion(bookId, discussion) {
-        return service.post(`/start-discussion/${bookId}`, discussion)
+        return service.post(`/api/start-discussion/${bookId}`, discussion)
     }
 
 }

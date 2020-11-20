@@ -5,7 +5,13 @@ export default class AccountDetails extends Component {
 
     state = {
         // isLoggedInUser: false,
-        userAccountInfo: []
+        userAccountInfo: [],
+        email: this.props.user?.user?.email,
+        bio: this.props.user?.user?.bio,
+        username: this.props.user?.user?.username,
+        photo: this.props.user?.user?.photo,
+        password: this.props.user?.user?.passwordHash
+
     }
 
     componentDidMount() {
@@ -25,26 +31,61 @@ export default class AccountDetails extends Component {
                 })
     }
 
-    handleSubmission = () => {
+    handleInputChange = (event) => {
+        console.log(event.target)
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+       
+    }
 
+    handleImageChange = (event) => {
+        console.log(event.target)
+        const { files } = event.target;
+
+        this.setState({ photo: files[0] });
+    };
+
+    handleSubmission = (event) => {
+        event.preventDefault();
+
+        const { email, bio, username, password, photo } = this.state
+        const uploadData = new FormData();
+
+        console.log(this.state)
+
+        uploadData.append("photo", photo);
+        uploadData.append("email", email);
+        uploadData.append("username", username);
+        uploadData.append("bio", bio);
+        uploadData.append("password", password);
+
+        
         ACCOUNT_SERVICE
-            .editAccountDetails()
-            .then(editedUser => console.log(editedUser))
+            .editAccountDetails(uploadData)
+            .then(editedUser => {
+                // this.fileInput.value='';
+                this.props.onUserChange(editedUser)
+            })
             .catch(err => console.log(err))
     }
 
 
     render() {
-        console.log(this.state.userAccountInfo)
+        console.log(this.state.photo)
+        console.log(this.state.password)
         const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
         return (
             <>
                 {isMyProfile && 
                 <div>
-                <form onSubmit={this.handleSubmission}>
+                <form onSubmit={(event) => this.handleSubmission(event)}>
+                    <label>
+                        Change profile picture
+                        <input type='file' name='photo' onChange={(event) => this.handleImageChange(event)} />
+                    </label>
                     <label>
                         Email Address
-                        <input type='email' placeholder={`${this.state.userAccountInfo.email}`}/>
+                        <input type='email' name='email' onChange={this.handleInputChange} value={this.state.email} placeholder={`${this.state.email}`}/>
                     </label>
                     {/* <label>
                         First Name
@@ -52,15 +93,15 @@ export default class AccountDetails extends Component {
                     </label> */}
                     <label>
                         User Name
-                        <input type='text' placeholder={`${this.state.userAccountInfo.username}`}/>
+                        <input type='text' name='username' onChange={this.handleInputChange} value={this.state.username} placeholder={`${this.state.username}`}/>
                     </label>
-                    {/* <label>
+                    <label>
                         Bio
-                        <input type='text' placeholder={`${this.state.userAccountInfo.bio}`}/>
-                    </label> */}
+                        <input type='text' name='bio' onChange={this.handleInputChange} value={this.state.bio} placeholder={`${this.state.bio}`}/>
+                    </label>
                     <label>
                         Input password to change details
-                        <input type='password' placeholder='*******' autoComplete='off'/>
+                        <input type='password' placeholder='*******' name='password' value={this.state.password} autoComplete='off' onChange={this.handleInputChange}/>
                     </label>
                     <button type='submit'>Save Profile Settings</button>
                 </form>
