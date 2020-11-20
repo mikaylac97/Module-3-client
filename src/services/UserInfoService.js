@@ -7,11 +7,11 @@ const service = axios.create({
     withCredentials: true
 });
 
-const image_service = axios.create({
-    baseURL,
-    withCredentials: true,
-    headers: { "Content-Type": "multipart/form-data" }
-});
+// const image_service = axios.create({
+//     baseURL,
+//     withCredentials: true,
+//     headers: { "Content-Type": "multipart/form-data" }
+// });
 
 
 const ACCOUNT_SERVICE = {
@@ -73,8 +73,32 @@ const ACCOUNT_SERVICE = {
         return service.post(`/api/review/${bookId}`, newReview)
     },
 
+    viewSingleReview(reviewId){
+        return service.get(`/api/review/${reviewId}`)
+    },
+
+    updateReview(reviewId, editedReview){
+        return service.post(`/api/review/edit/${reviewId}`, editedReview)
+    },
+
+    deleteReview(reviewId){
+        return service.post(`/api/review/delete/${reviewId}`, {})
+    },
+
     startDiscussion(bookId, discussion) {
         return service.post(`/api/start-discussion/${bookId}`, discussion)
+    },
+
+    viewSingleDiscussion(discussionId){
+        return service.get(`/api/discuss/${discussionId}`)
+    },
+
+    updateDiscussion(discussionId, editedDiscussion){
+        return service.post(`/api/discuss/edit/${discussionId}`, editedDiscussion)
+    },
+
+    deleteDiscussion(discussionId){
+        return service.post(`/api/delete-discuss/${discussionId}`, {})
     }
 
 }
