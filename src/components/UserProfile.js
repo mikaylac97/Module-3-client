@@ -171,8 +171,8 @@ export default class UserProfile extends Component {
                                     <p>Following</p>
                                     {this.state.following.map(following => {
                                         return(
-                                            <Link to={`/profile/${following._id}`}>
-                                                <img src={following.photo} alt='usr-avi' className='user-avi-side'/>
+                                            <Link to={`/profile/${following?._id}`}>
+                                                <img src={following?.photo} alt='usr-avi' className='user-avi-side'/>
                                             </Link>
                                         )
                                     })}
@@ -181,8 +181,8 @@ export default class UserProfile extends Component {
                                     <p>Followers</p>
                                     {this.state.followers.map(follower => {
                                         return(
-                                            <Link to={`/profile/${follower._id}`}>
-                                            <img src={follower.photo} alt='usr-avi' className='user-avi-side'/>
+                                            <Link to={`/profile/${follower?._id}`}>
+                                            <img src={follower?.photo} alt='usr-avi' className='user-avi-side'/>
                                             </Link>
                                         )
                                     })}

@@ -36,14 +36,20 @@ export default class Bookshelves extends Component {
         // console.log(event)
         ACCOUNT_SERVICE
             .removeBookFromWantToReadList(event.target.id)
-            .then(responseFromDB => this.props.history.push(`/shelves/${this.props.match.params.accountId}`))
+            .then(responseFromDB =>  {
+                this.props.history.push(`/shelves/${this.props.match.params.accountId}`)
+                window.location.reload();
+            })
             .catch(err => console.log(err))
     }
 
     removeBookFromHasReadShelf = (event) => {
         ACCOUNT_SERVICE
             .removeBookFromHasReadList(event.target.id)
-            .then(responseFromDB => this.props.history.push(`/shelves/${this.props.match.params.accountId}`))
+            .then(responseFromDB => {
+                this.props.history.push(`/shelves/${this.props.match.params.accountId}`)
+                window.location.reload();
+            })
             .catch(err => console.log(err))
     }
 
@@ -66,8 +72,8 @@ export default class Bookshelves extends Component {
                                 {/* <h2>{book.title}</h2>
                                 <h3>{book.subtitle}</h3>
                                 <h4>{book.authors.map(author => author)}</h4>
-                                <p>{book.description}</p>
-                                <button onClick={this.removeBookFromHasReadShelf} id={book._id}>Remove Book</button> */}
+                                <p>{book.description}</p> */}
+                                <button onClick={event => this.removeBookFromHasReadShelf(event)} className='review-dlt-btn' id={book._id}>Remove Book</button>
                             </div>
                         )
                     })}
@@ -85,7 +91,8 @@ export default class Bookshelves extends Component {
                             <div className='hover-ctrl' key={book._id}>
                                 <img src={book.image_url} className='bookshelf-item' alt='book-cvr' />
                                 {/* <button className='hover-btn' onClick={this.removeBookFromWantShelf} id={book._id}>Remove Book</button> */}
-                                <img src="https://img.icons8.com/wired/64/000000/trash.png" alt='trash' className='hover-btn' onClick={this.removeBookFromWantShelf} id={book._id}/>
+                                {/* <img src="https://img.icons8.com/wired/64/000000/trash.png" alt='trash' className='hover-btn' onClick={this.removeBookFromWantShelf} id={book._id}/> */}
+                                <button onClick={event => this.removeBookFromWantShelf(event)} id={book._id} className='review-dlt-btn'>Remove Book</button>
                             </div>
                         )
                     })}

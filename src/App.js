@@ -69,7 +69,7 @@ export default class App extends Component {
             <Route exact path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />
             <Route exact path='/profile/:accountId' render={props => <UserProfile {...props} user={this.state.currentUser} onUserChange={this.updateUser} /> }/>
             <Route exact path='/account/:accountId' render={props => <AccountDetails {...props} user={this.state.currentUser} onUserChange={this.updateUser} />} />
-            <Route exact path='/shelves/:accountId' component={Bookshelves} />
+            <Route exact path='/shelves/:accountId' render={props => <Bookshelves {...props} user={this.state.currentUser} /> } />
             <Route exact path='/discuss/:bookId' render={props => <Discussion {...props} user={this.state.currentUser} />} />
             <Route exact path='/discussions/:accountId' render={props => <Discussions {...props} user={this.state.currentUser} onUserChange={this.updateUser} /> } />
             <Route exact path='/discussinfo/:discussionId' render={props => <DiscussionDetails {...props} user={this.state.currentUser} />} /> 
@@ -78,7 +78,7 @@ export default class App extends Component {
             <Route exact path='/reviews/:accountId' render={props => <Reviews {...props} user={this.state.currentUser} onUserChange={this.updateUser}/>} />
             <Route exact path='/followers/:accountId' component={Followers} />
             <Route exact path='/following/:accountId' component={Following} />
-            <Route exact path='/bookinfo/:bookId' component={BookDetails} />
+            <Route exact path='/bookinfo/:bookId' render={props => <BookDetails {...props} user={this.state.currentUser} /> } />
             {/* <Route exact path='/home' render={props => <Timeline {...props} user={this.state.currentUser} /> } /> */}
             <Route exact path='/home' render={props => <Timeline {...props} user={this.state.currentUser} />} />
             {/* <Route exact path='/review/:bookId' render={props => <CreateReview {...props} user={this.state.currentUser} />} />

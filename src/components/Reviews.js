@@ -27,30 +27,19 @@ export default class Reviews extends Component {
             .catch(err => console.log(err))
     }
 
-    // handleInputChange = (event) => {
-    //     const { name, value } = event.target;
-    //     this.setState({ [name]: value }); 
-    // }
+    deleteReview = (event) => {
+        event.preventDefault();
 
-    // handleEditMode = (event) => {
-    //     this.setState({
-    //         editMode: true
-    //     })
-    // }
+        ACCOUNT_SERVICE
+            .deleteReview(event.target.id)
+            .then(deletedReview =>  {
+                this.props.history.push(`/reviews/${this.props.match.params.accountId}`)
+                window.location.reload();
+            })
+            .catch(err => console.log(err))
+    }
 
-    // saveEditChanges = (event) => {
-    //     event.preventDefault();
-
-    //     const { numOfStars, content } = this.state
-    //     ACCOUNT_SERVICE
-    //         .updateReview(event.target.id, { numOfStars, content })
-    //         .then(updatedReview => this.props.history.push(`/reviews/${this.props.user?.user?._id}`))
-    //         .catch(err => console.log(err))
-    // }
-
-    // deleteReview = () => {
-
-    // }
+    
 
 
 
@@ -60,41 +49,53 @@ export default class Reviews extends Component {
         // console.log(this.props?.user?.user?._id)
         // console.log(this.state.isLoggedInUser)
         return (
-            <div>
+            <div className='container-fluid site-container'>
+            {this.state.reviews.length > 0 && 
+                <div className='row'>
                 {this.state.reviews.map(review => {
                     return(
-                <div key={review._id}>
-                    {!this.state.editMode &&
-                        <div>
-                        <p>content: {review.content}</p>
-                        <p>rating: {review.numOfStars}</p>
-                        <p>book reviewing: {review.book?.title}</p>
+                <div key={review._id} className='container review-container-all'>
+                <div className='row review-user'>
+                <div className='to-left'>
+                        <img src={review.author?.photo} alt='user-avi' className='usr-avi-timeline' />
+                        <p><Link to={`/profile/${review.author?._id}`}>{review.author?.username}</Link></p>
+                </div>
+                <div className='to-right'>
+                    <button id={review._id} className='details-btn'><Link to={`/reviewinfo/${review._id}`} className='link-white-txt'>Details</Link></button>
+                    {isMyProfile && <button id={review._id} onClick={event => this.deleteReview(event)} className='review-dlt-btn'>Delete</button>}
+                </div>        
+                </div>
+                <div className='row post-content'>
+                        <div className='post-content-left col-sm-3'>
+                            <img src={review.book?.image_url} alt='book-cvr'/>
                         </div>
-                    }
-                    {isMyProfile &&  
+                        <div className='post-content-right col-sm-9'>
                         <div>
-                            <button id={review._id}><Link to={`/reviewinfo/${review._id}`}>Edit</Link></button>
-                            <button>Delete</button>
+                            <h3><Link to={`/bookinfo/${review.book?.google_books_id}`}>{review.book?.title} by {review.book?.authors}</Link></h3>
                         </div>
-                    }
-                        {/* {isMyProfile &&  
-                        <div key={review._id}>
-                            <form>
-                                <label>
-                                    Stars / 5
-                                    <input type='number' min='0' max='5' name='numOfStars' value={review.numOfStars} onChange={this.handleInputChange}/>
-                                </label>
-                                <label>
-                                    Review
-                                    <input type='text' name='content' value={review.content} onChange={this.handleInputChange}/>
-                                </label>
-                                <button id={review._id} type='submit' onClick={(event) => this.updateReview(event.target.id)}>Save Changes</button>
-                            </form>
-                        </div>     
-                        } */}
+                        <div>
+                        {review.numOfStars === 1 && <p>★☆☆☆☆</p>}
+                            {review.numOfStars === 2 && <p>★★☆☆☆</p>}
+                            {review.numOfStars === 3 && <p>★★★☆☆</p>}
+                            {review.numOfStars === 4 && <p>★★★★☆</p>}
+                            {review.numOfStars === 5 && <p>★★★★★</p>}
+                        </div>
+                        <div>
+                            <p>{review.content}</p>
+                        </div>    
+
+                        </div>
+                </div>
+                
                 </div>
                     )
                 })}
+                </div>}
+                {this.state.reviews.length === 0 && 
+                <div className='row'>
+                    <h1>This user hasn't written any reviews yet.</h1>
+                    <button><Link to={`/profile/${this.props.match.params.accountId}`}>Back to profile</Link></button>
+                </div>}
             </div>
         )
     }

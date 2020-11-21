@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ACCOUNT_SERVICE from '../services/UserInfoService'
+import Follow from './Following';
 
 export default class Timeline extends Component {
     state = {
@@ -38,11 +39,27 @@ export default class Timeline extends Component {
             <div className='container-fluid site-container'>
                 <div className='row'>
                     <div className='col-lg-3'>
-                        <div>
-                            <img src={user?.photo} alt='usr-avi' className='user-avi' />
-                            <p>{user?.username}</p>
-                            {!this.state.viewingDiscussions && <button onClick={this.switchToDiscussionsView}>View Discussions</button>}
-                            {this.state.viewingDiscussions && <button onClick={this.switchToDiscussionsView}>View Reviews</button>}
+                        <div className='user-stats container'>
+                        <div className='row avi-and-name'>
+                            <div col-sm-3><img src={user?.photo} alt='usr-avi' className='user-avi' /></div>
+                            <div col-sm-9>
+                                <p className='home-username'>{user?.username}</p>
+                            </div> 
+                        </div>
+                        <div className='row'>
+                            <div>
+                                <b>About me</b>
+                                <p>{user?.bio}</p>
+                                <b>Following</b>
+                                <p>{user?.following.length}</p>
+                                <b>Followers</b>
+                                <p>{user?.followers.length}</p>
+                            </div>
+                        </div>
+                        <div className='row'>
+                            {!this.state.viewingDiscussions && <button onClick={this.switchToDiscussionsView} className='details-btn' style={{color: 'white'}}>View Discussions</button>}
+                            {this.state.viewingDiscussions && <button onClick={this.switchToDiscussionsView} className='review-dlt-btn'>View Reviews</button>}
+                        </div>
                         </div>
                     </div>
                     <div className='col-lg-9'>
@@ -53,13 +70,26 @@ export default class Timeline extends Component {
                                 <div>
                                 {personTheyFollow.reviews.map(review => {
                                     return(
-                                        <div key={review._id}>
-                                            <img src={personTheyFollow.photo} alt='user' className='usr-avi-timeline' />
-                                            <p>{personTheyFollow.username}</p>
-                                            <h4>{review.book?.title}</h4>
-                                            <p>{review.numOfStars}</p>
-                                            <p>{review.content}</p>
-                                        </div>
+                                        <div key={review._id} className='timeline-item container'>
+                                            <div className='usr-info-timeline row'>
+                                                <img src={personTheyFollow.photo} alt='user' className='usr-avi-timeline' />
+                                                <Link to={`/profile/${personTheyFollow._id}`}>{personTheyFollow.username}</Link>
+                                            </div>
+                                            <div className='post-content-timeline row'>
+                                                <div className='post-book-img col-md-3'>
+                                                    <img src={review.book?.image_url} alt='book-cvr' />
+                                                </div>
+                                                <div className='post-text-content col-md-9'>
+                                                    <h4>{review.book?.title} by: {review.book?.authors}</h4>
+                                                    {review.numOfStars === 1 && <p>★☆☆☆☆</p>}
+                                                    {review.numOfStars === 2 && <p>★★☆☆☆</p>}
+                                                    {review.numOfStars === 3 && <p>★★★☆☆</p>}
+                                                    {review.numOfStars === 4 && <p>★★★★☆</p>}
+                                                    {review.numOfStars === 5 && <p>★★★★★</p>}
+                                                    <p>{review.content}</p>
+                                                </div>
+                                            </div>
+                                            </div>
                                     )
                                 
                             })}
@@ -80,14 +110,14 @@ export default class Timeline extends Component {
                                                 <img src={personTheyFollow.photo} alt='user' className='usr-avi-timeline' />
                                                 <Link to={`/profile/${personTheyFollow._id}`}>{personTheyFollow.username}</Link>
                                             </div>
-                                            <div className='post-content row'>
+                                            <div className='post-content-timeline row'>
                                                 <div className='post-book-img col-md-3'>
                                                     <img src={discussion.book?.image_url} alt='book-cvr' />
                                                 </div>
                                                 <div className='post-text-content col-md-9'>
                                                     <h4>{discussion.book?.title} by: {discussion.book?.authors}</h4>
                                                     <h5>{discussion.title}</h5>
-                                                    <p>{discussion.content}</p>
+                                                    <p>{discussion.discussionContent || discussion.content}</p>
                                                 </div>
                                             </div>
                                             </div>
