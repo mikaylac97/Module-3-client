@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ACCOUNT_SERVICE from '../services/UserInfoService'
 
 export default class Timeline extends Component {
@@ -34,7 +35,7 @@ export default class Timeline extends Component {
         const { user } = this.props.user
         // const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
         return (
-            <div className='container'>
+            <div className='container-fluid site-container'>
                 <div className='row'>
                     <div className='col-lg-3'>
                         <div>
@@ -46,7 +47,7 @@ export default class Timeline extends Component {
                     </div>
                     <div className='col-lg-9'>
                     {!this.state.viewingDiscussions && <div>
-                    <h2>reviews from people you follow</h2>
+                    <h2>Reviews from people you follow</h2>
                         {this.state.usersTheyFollowAndPosts.map(personTheyFollow => {
                             return(
                                 <div>
@@ -68,18 +69,27 @@ export default class Timeline extends Component {
                         })}
                         </div>}
                         {this.state.viewingDiscussions && <div>
-                            <h2>discussions from people you follow</h2>
+                            <h2>Discussions from people you follow</h2>
                             {this.state.usersTheyFollowAndPosts.map(personTheyFollow => {
                                 return(
                                     <div>
                                     {personTheyFollow.discussions.map(discussion => {
                                         return(
-                                            <div key={discussion._id}>
+                                            <div key={discussion._id} className='timeline-item container'>
+                                            <div className='usr-info-timeline row'>
                                                 <img src={personTheyFollow.photo} alt='user' className='usr-avi-timeline' />
-                                                <p>{personTheyFollow.username}</p>
-                                                <h4>{discussion.book?.title}</h4>
-                                                <p>{discussion.title}</p>
-                                                <p>{discussion.content}</p>
+                                                <Link to={`/profile/${personTheyFollow._id}`}>{personTheyFollow.username}</Link>
+                                            </div>
+                                            <div className='post-content row'>
+                                                <div className='post-book-img col-md-3'>
+                                                    <img src={discussion.book?.image_url} alt='book-cvr' />
+                                                </div>
+                                                <div className='post-text-content col-md-9'>
+                                                    <h4>{discussion.book?.title} by: {discussion.book?.authors}</h4>
+                                                    <h5>{discussion.title}</h5>
+                                                    <p>{discussion.content}</p>
+                                                </div>
+                                            </div>
                                             </div>
                                         )
                                     })}

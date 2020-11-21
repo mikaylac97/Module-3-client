@@ -20,6 +20,7 @@ import Followers from './components/Followers'
 import Following from './components/Following'
 import BookDetails from './components/BookDetails'
 import Timeline from './components/Timeline'
+import Footer from './components/Footer'
 // import CreateReview from './components/Create/Review'
 // import CreateDiscussion from './components/Create/Discussion'
 
@@ -83,7 +84,7 @@ export default class App extends Component {
             {/* <Route exact path='/review/:bookId' render={props => <CreateReview {...props} user={this.state.currentUser} />} />
             <Route exact path='/discuss/:bookId' render={props => <CreateDiscussion {...props} user={this.state.currentUser} />} /> */}
           </Switch>
-      
+      <Footer />
       </div>
     )
   }

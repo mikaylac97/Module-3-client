@@ -45,11 +45,11 @@ export default class Discussions extends Component {
                         <div key={discussion._id}>
                             <h2>{discussion.title}</h2>
                             <h4>Discussing: {discussion.book.title} By: {discussion.book.authors}</h4>
-                            <p>{discussion.content}</p>
-                            {isMyProfile && <div>
+                            <p>{discussion.discussionContent}</p>
+                            <div>
                                 <button><Link to={`/discussinfo/${discussion._id}`}>Details</Link></button>
-                                <button id={discussion._id} onClick={event => this.deleteDiscussion(event)}>Delete</button>
-                            </div>}
+                                {isMyProfile && <button id={discussion._id} onClick={event => this.deleteDiscussion(event)}>Delete</button>}
+                            </div>
                         </div>
                     )
                 })}

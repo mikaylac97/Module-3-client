@@ -99,6 +99,10 @@ const ACCOUNT_SERVICE = {
 
     deleteDiscussion(discussionId){
         return service.post(`/api/delete-discuss/${discussionId}`, {})
+    },
+
+    replyToDiscussion(discussionId, replyContent){
+        return service.post(`/api/discuss/${discussionId}/reply`, replyContent)
     }
 
 }

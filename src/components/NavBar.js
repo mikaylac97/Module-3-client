@@ -49,14 +49,14 @@ export default class NavBar extends Component {
     render() {
         console.log({props: this.props})
         return (
-            <nav className="navbar navbar-light" >
+            <nav className="navbar navbar-light nav-font">
                 <div>
-                    BOOKR.
+                    <Link to='/home' className='home-btn'><h2>BOOKR.</h2></Link>
                 </div>
                 {this.props.user && 
                 <>
                     <div>
-                    <ul>
+                    <ul className='nav-ul'>
                         <li>
                             <Link className='nav-links' to='/home'>Home</Link>
                         </li>
@@ -65,7 +65,7 @@ export default class NavBar extends Component {
                         </li>
                         <li>
                         <div className="dropdown">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button className="btn tan-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Account
                             </button>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">

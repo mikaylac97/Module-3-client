@@ -77,8 +77,8 @@ export default class AccountDetails extends Component {
         return (
             <>
                 {isMyProfile && 
-                <div>
-                <form onSubmit={(event) => this.handleSubmission(event)}>
+                <div className='container page-container'>
+                <form onSubmit={(event) => this.handleSubmission(event)} className='bookr-form'>
                     <label>
                         Change profile picture
                         <input type='file' name='photo' onChange={(event) => this.handleImageChange(event)} />

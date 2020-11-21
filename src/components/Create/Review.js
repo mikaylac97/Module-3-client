@@ -34,10 +34,10 @@ export default class Review extends Component {
         const { numOfStars, content } = this.state
         // console.log({numOfStars, content})
         return (
-            <div>
-                <form onSubmit={this.addReviewToBook}>
+            <div className='container page-container'>
+                <form onSubmit={this.addReviewToBook} className='bookr-form'>
                     <label>
-                        Stars / 5
+                        Rating / 5
                         <input type='number' min='0' max='5' name='numOfStars' value={numOfStars} onChange={this.handleInputChange}/>
                     </label>
                     <label>

@@ -52,37 +52,46 @@ export default class Bookshelves extends Component {
     render() {
         console.log(this.state.booksHasRead)
         return (
-            <div>
+        <div className='container-fluid site-container'>
+            <div className='row'>
                 {this.state.booksHasRead.length > 0 && 
-                <div>
+                <div className='col-lg-6'>
+                <div className='container'>
                     <h1>Books user has read</h1>
+                    <div className='row'>
                     {this.state.booksHasRead.map(book => {
                         return (
                             <div key={book._id}>
-                                <h2>{book.title}</h2>
+                            <img src={book.image_url} alt='book-cvr' className='bookshelf-item'/>
+                                {/* <h2>{book.title}</h2>
                                 <h3>{book.subtitle}</h3>
                                 <h4>{book.authors.map(author => author)}</h4>
                                 <p>{book.description}</p>
-                                <button onClick={this.removeBookFromHasReadShelf} id={book._id}>Remove Book</button>
+                                <button onClick={this.removeBookFromHasReadShelf} id={book._id}>Remove Book</button> */}
                             </div>
                         )
                     })}
+                    </div>
+                    </div>
                 </div>}
                 {this.state.booksWantsToRead.length > 0 && 
-                <div>
+                <div className='col-lg-6'>
+                <div className='container'>
                     <h1>Books user wants to read</h1>
+                </div>
+                <div className='row'>
                     {this.state.booksWantsToRead.map(book => {
                         return(
-                            <div key={book._id}>
-                                <h2>{book.title}</h2>
-                                <h3>{book.subtitle}</h3>
-                                <h4>{book.authors.map(author => author)}</h4>
-                                <p>{book.description}</p>
-                                <button onClick={this.removeBookFromWantShelf} id={book._id}>Remove Book</button>
+                            <div className='hover-ctrl' key={book._id}>
+                                <img src={book.image_url} className='bookshelf-item' alt='book-cvr' />
+                                {/* <button className='hover-btn' onClick={this.removeBookFromWantShelf} id={book._id}>Remove Book</button> */}
+                                <img src="https://img.icons8.com/wired/64/000000/trash.png" alt='trash' className='hover-btn' onClick={this.removeBookFromWantShelf} id={book._id}/>
                             </div>
                         )
                     })}
+                    </div>
                 </div>}
+                </div>
             </div>
         )
     }

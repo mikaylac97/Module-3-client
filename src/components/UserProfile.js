@@ -58,34 +58,85 @@ export default class UserProfile extends Component {
         // console.log(this.state.isLoggedInUser)
         // console.log({user: this.props?.user?.user?._id, params: this.props.match.params.accountId})
         // if (!this.props.user?.user?._id) return  <div>Loading....</div>
+        const slicedReviews = this.state.reviews.slice(Math.max(this.state.reviews.length-3, 0))
+        const slicedDiscussions = this.state.discussions.slice(Math.max(this.state.discussions.length-3, 0))
         if (!this.state.isLoggedInUser) return <div>Loading...</div>
         const isFollowing = this.props?.user?.user?.following.includes(this.props.match.params.accountId)
         // console.log(this.state.following)
         const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
+        // console.log(this.state.reviews.length)
         return (
-    
-                <div className='container'>
+            <div>
+                <div className='container-fluid site-container'>
                     <div className='row'>
                         <div className='col-lg-9'>
-                            <div>
-                                <img src={this.state.profile_picture} alt='user-avi' className='user-avi'/>
-                            </div>
-                            <div>
-                                <h2>{this.state.userName}</h2>
-                                {isMyProfile && <p><Link to='/'>edit profile</Link></p>}
-                                <p>{this.state.bio}</p>
-                            </div>
-                            {/* <div>
+                            <div className='container user-info-top'>
+                                <div className='row info-content'>
                                 <div>
-                                    <h3>Has Read</h3>
+                                    <img src={this.state.profile_picture} alt='user-avi' className='user-avi'/>
                                 </div>
-                                <div>
-                                    <h3></h3>
+                                <div className='user-top-text'>
+                                    <h2 className='username-profile'>{this.state.userName}</h2>
+                                    {isMyProfile && <p><Link to='/' className='link-profile-bio'>edit profile</Link></p>}
+                                    <p className='user-bio'>{this.state.bio}</p>
                                 </div>
-                            </div> */}
+                                {/* <div>
+                                    <p>Average rating: </p>
+                                </div> */}
+                                </div>
+                            </div>
+                        <div className='container'>    
+                            <div className='section-header'>
+                                <h3 className='username-profile'>{this.state.userName} recently reviewed:</h3>
+                            </div>
+                           
+                            <div className='row review-container'>
+                            {slicedReviews.map(review => {
+                                return(
+                                   
+                                <div className="col-sm-3">
+                                    <div class="card" style={{width: "18rem;"}}>
+                                    <img class="card-img-top" src={review.book.image_url} alt="Card cap" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">{review.numOfStars} / 5</h5>
+                                        <p class="card-text">{review.content}</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <Link to={`reviewinfo/${review._id}`} className="card-link">Details</Link>
+                                    </div>
+                                    </div>
+                                </div>
+                            )})}
+                                
+                            </div>
                         </div>
-                        <div className='col-lg-3'>
-                            <div>
+                        <div className='container testing-style'>
+                        <div className='section-header'>
+                                <h3 className='username-profile'>{this.state.userName} recently discussed:</h3>
+                            </div>
+                            <div className='row discussion-container'>
+                            {slicedDiscussions.map(discussion => {
+                                return(
+                                   
+                                <div className="col-sm-3">
+                                    <div class="card" style={{width: "18rem;"}}>
+                                    <img class="card-img-top" src={discussion.book.image_url} alt="Card cap" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">{discussion.title}</h5>
+                                        <p class="card-text">{discussion.discussionContent}</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <Link to={`discussinfo/${discussion._id}`} className="card-link">Details</Link>
+                                    </div>
+                                    </div>
+                                </div>
+                            )})}
+                                
+                            </div>
+                            </div>
+                            </div>
+                            <div className='col-lg-3'>
+                            <div className='profile-links-container'>
                                 <ul className='profile-links'>
                                 {!isMyProfile && isFollowing && <li>
                                     <button onClick={this.handleFollowAndUnfollow}>Unfollow</button>
@@ -94,22 +145,50 @@ export default class UserProfile extends Component {
                                     <button onClick={this.handleFollowAndUnfollow}>Follow</button>
                                 </li>}
                                     <li>
-                                        <Link to={`/reviews/${this.props.match.params.accountId}`}>Reviews</Link>
+                                    <img src="https://img.icons8.com/ios/50/000000/star-half.png" alt='review-icon'/>
+                                        <Link className='profile-li' to={`/reviews/${this.props.match.params.accountId}`}>Reviews</Link>
                                     </li>
                                     <li>
-                                        <Link to={`/discussions/${this.props.match.params.accountId}`}>Discussions</Link>
+                                    <img src="https://img.icons8.com/fluent-systems-regular/48/000000/comment-discussion.png" alt='discuss-icon'/>
+                                        <Link className='profile-li' to={`/discussions/${this.props.match.params.accountId}`}>Discussions</Link>
+                                    </li>
+                                    {/* <li>
+                                        <img src="https://img.icons8.com/ios-filled/50/000000/friends.png" alt='follower-icon'/>
+                                        <Link className='profile-li' to={`/followers/${this.props.match.params.accountId}`}>Followers</Link>
                                     </li>
                                     <li>
-                                        <Link to={`/followers/${this.props.match.params.accountId}`}>Followers</Link>
-                                    </li>
+                                    <img src="https://img.icons8.com/ios/50/000000/friends.png" alt='following-icon'/>
+                                        <Link className='profile-li' to={`/following/${this.props.match.params.accountId}`}>Following</Link>
+                                    </li> */}
                                     <li>
-                                        <Link to={`/following/${this.props.match.params.accountId}`}>Following</Link>
-                                    </li>
-                                    <li>
-                                        <Link to={`/shelves/${this.props.match.params.accountId}`}>Shelves</Link>
+                                    <img src="https://img.icons8.com/pastel-glyph/50/000000/books.png" alt='shelf-icon'/>
+                                        <Link className='profile-li' to={`/shelves/${this.props.match.params.accountId}`}>Shelves</Link>
                                     </li>
                                 </ul>
                             </div>
+                            <div className='usr-follow'>
+                                 <div className='user-following'>
+                                    <p>Following</p>
+                                    {this.state.following.map(following => {
+                                        return(
+                                            <Link to={`/profile/${following._id}`}>
+                                                <img src={following.photo} alt='usr-avi' className='user-avi-side'/>
+                                            </Link>
+                                        )
+                                    })}
+                                 </div>
+                                 <div className='user-followers'>
+                                    <p>Followers</p>
+                                    {this.state.followers.map(follower => {
+                                        return(
+                                            <Link to={`/profile/${follower._id}`}>
+                                            <img src={follower.photo} alt='usr-avi' className='user-avi-side'/>
+                                            </Link>
+                                        )
+                                    })}
+                                 </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
