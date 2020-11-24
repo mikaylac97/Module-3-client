@@ -38,31 +38,33 @@ export default class Timeline extends Component {
         return (
             <div className='container-fluid site-container'>
                 <div className='row'>
-                    <div className='col-lg-3'>
-                        <div className='user-stats container'>
-                        <div className='row avi-and-name'>
-                            <div col-sm-3><img src={user?.photo} alt='usr-avi' className='user-avi' /></div>
-                            <div col-sm-9>
+                    <div className='col-lg-3 sidebar'>
+                        <div className='user-stats'>
+                        <div className='avi-and-name'>
+                            <img src={user?.photo} alt='usr-avi' className='usr-avi-timeline' />
                                 <p className='home-username'>{user?.username}</p>
-                            </div> 
+                           
                         </div>
-                        <div className='row'>
-                            <div>
-                                <b>About me</b>
-                                <p>{user?.bio}</p>
+                        <div className='below-user-sidebar'>
+                            <div className='bio'>
+                            <b>Bio</b>
+                            <p>{user?.bio}</p>    
+                            </div>
+                            <div className='follow-stats-tl'>
                                 <b>Following</b>
                                 <p>{user?.following.length}</p>
                                 <b>Followers</b>
                                 <p>{user?.followers.length}</p>
                             </div>
-                        </div>
-                        <div className='row'>
+                        
+                        <div className='switch-tl-view'>
                             {!this.state.viewingDiscussions && <button onClick={this.switchToDiscussionsView} className='details-btn' style={{color: 'white'}}>View Discussions</button>}
                             {this.state.viewingDiscussions && <button onClick={this.switchToDiscussionsView} className='review-dlt-btn'>View Reviews</button>}
                         </div>
                         </div>
+                        </div>
                     </div>
-                    <div className='col-lg-9'>
+                    <div className='col-lg-9 main-content'>
                     {!this.state.viewingDiscussions && <div>
                     <h2>Reviews from people you follow</h2>
                         {this.state.usersTheyFollowAndPosts.map(personTheyFollow => {
@@ -130,6 +132,7 @@ export default class Timeline extends Component {
                     </div>
                 </div>
             </div>
+            
         )
     }
 }

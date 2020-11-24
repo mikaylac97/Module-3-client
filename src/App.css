@@ -38,8 +38,9 @@
 }
 
 .site-container {
-  background-color: #d7cec7;
-  padding: 50px 30px;
+  /* background-color: #d7cec7; */
+  background-color: #F5F5F5;
+  /* padding: 50px 30px; */
   /* font-family: Georgia, 'Times New Roman', Times, serif; */
 }
 
@@ -233,13 +234,18 @@
 
 .home-username {
   font-weight: 700;
+  margin-bottom: 0px;
+  margin-left: 10px;
 }
 
 .timeline-item {
-  background-color: #F5F5F5;
+  /* background-color: #F5F5F5; */
+  background-color: white;
   padding: 20px 20px;
   margin-bottom: 20px;
   color: #565656;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px -6px #777;
 }
 
 .usr-info-timeline {
@@ -545,10 +551,11 @@ footer {
 }
 
 .user-stats {
-  background-color: white;
-  padding: 20px 30px;
-  border-radius: 10px;
+  position: fixed;
   color: #565656;
+  width: fit-content;
+  padding-top: 30px;
+  z-index: 1;
 }
 
 
@@ -556,4 +563,30 @@ footer {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.sidebar {
+  background-color: #d7cec7;
+}
+
+.main-content {
+  padding: 30px 40px;
+}
+
+.follow-stats-tl {
+  display: flex;
+  flex-direction: row;
+}
+
+.follow-stats-tl p {
+  margin: 0px 5px;
+}
+
+.switch-tl-view {
+  margin: 20px 0px;
+}
+
+.below-user-sidebar {
+  margin-left: 20px;
+  margin-top: 20px;
 }
