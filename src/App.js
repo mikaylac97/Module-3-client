@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-// import Landing from './components/Landing'
+import Landing from './components/Landing'
 import Signup from './components/Authentication/Signup'
 import Login from './components/Authentication/Login'
 import AUTH_SERVICE from './services/AuthService'
@@ -63,7 +63,7 @@ export default class App extends Component {
     
       <NavBar user={this.state.currentUser} onUserChange={this.updateUser}/>
           <Switch>
-            {/* <Route exact path='/' component={Landing} /> */}
+            <Route exact path='/' component={Landing} />
             <Route exact path='/search' render={props => <Search {...props} />} />
             <Route exact path='/signup' render={props => <Signup {...props} />} />
             <Route exact path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />

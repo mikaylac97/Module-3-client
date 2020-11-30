@@ -84,8 +84,9 @@ export default class NavBar extends Component {
             }
             {this.props.user === null  &&
                 <div>
-                    <button><Link to='/login'>Log In</Link></button>
-                    <button><Link to='/signup'>Sign Up</Link></button>
+                    {/* <button className='logged-out-login'><Link to='/login' className='nav-links'>Log In</Link></button>
+                    <button className='logged-out-signup details-btn'><Link to='/signup' className='link-white-txt'>Sign Up</Link></button> */}
+                    <Search />
                 </div>}
                
             </nav>

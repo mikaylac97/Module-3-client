@@ -40,10 +40,9 @@ export default class Signup extends React.Component {
   render() {
     return (
       <>
-        <section>
-          <h2> Sign Up </h2>
+       
 
-          <form onSubmit={this.handleFormSubmission}>
+          <form onSubmit={this.handleFormSubmission} className='landing-form'>
             <label>
               Username:
               <input
@@ -77,12 +76,12 @@ export default class Signup extends React.Component {
               />
             </label>
 
-            <button> Signup </button>
+            <button className='details-btn'> Signup </button>
           </form>
 
           {/* if the message is not NULL then show the message */}
           {this.state.message && <div> {this.state.message} </div>}
-        </section>
+    
       </>
     );
   }

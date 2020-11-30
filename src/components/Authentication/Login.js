@@ -44,10 +44,7 @@ export default class Login extends React.Component {
     // console.log(this.state.loggedInUser)
     return (
       <>
-        <section>
-          <h2> Login </h2>
-
-          <form onSubmit={this.handleFormSubmission}>
+          <form onSubmit={this.handleFormSubmission} className='landing-form'>
             <label>
               Email:
               <input
@@ -69,13 +66,12 @@ export default class Login extends React.Component {
                 onChange={this.handleInputChange}
               />
             </label>
-            <button type='submit'> Login </button>
+            <button type='submit' className='details-btn'> Login </button>
             
           </form>
 
           {/* if the message is not NULL then show the message */}
           {this.state.message && <div> {this.state.message} </div>}
-        </section>
       </>
     );
   }
