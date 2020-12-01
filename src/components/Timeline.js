@@ -36,7 +36,7 @@ export default class Timeline extends Component {
         const { user } = this.props.user
         // const isMyProfile = this.props?.user?.user?._id.toString() === this.props.match.params.accountId.toString();
         return (
-            <div className='container-fluid site-container'>
+            <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-lg-3 sidebar'>
                         <div className='user-stats'>

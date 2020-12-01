@@ -40,8 +40,12 @@
 .site-container {
   /* background-color: #d7cec7; */
   background-color: #F5F5F5;
-  /* padding: 50px 30px; */
+  padding: 50px 30px;
   /* font-family: Georgia, 'Times New Roman', Times, serif; */
+}
+
+ul {
+  list-style: none;
 }
 
 
@@ -271,6 +275,15 @@
   margin: 5px;
 }
 
+.profile-followers {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0px;
+}
+
+.profile-followers li {
+  margin: 0px 10px 0px 0px;
+}
 
 .username-profile {
   color: #565656;
@@ -284,30 +297,42 @@
   color: #565656;
 }
 
-.user-info-top {
-  padding: 20px 25px 50px 25px;
+.user-info {
+  padding: 50px;
   /* background-color: white; */
-  background-color: #F5F5F5;
+  background-color: white;
   border-radius: 10px;
 }
 
-.info-content {
-  padding: 20px 20px;
+.user-info-top {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.user-top-text {
-  margin-left: 20px;;
+.user-info-right img {
+  width: 2vw;
+}
+
+.profile-name-img {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-name-img img {
+  margin-right: 10px;
 }
 
 .profile-links {
   /* border: 1px solid lightgray; */
-  border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding-left: 10px;
   text-align: left;
   list-style: none;
-  background-color: white;
 }
 
 .profile-links li {

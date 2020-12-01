@@ -32,6 +32,7 @@ export default class Login extends React.Component {
 
         // Redirect user to home page after successful sign up
         this.props.history.push(`/profile/${user._id}`);
+        console.log('this was called')
       })
       .catch(err => {
         if (err.response && err.response.data) {
