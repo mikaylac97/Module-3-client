@@ -261,11 +261,6 @@ ul {
   border-radius: 50%;
 }
 
-.usr-follow {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-}
 
 .usr-follow div {
   margin-bottom: 10px;
@@ -276,14 +271,41 @@ ul {
 }
 
 .profile-followers {
-  display: flex;
-  flex-direction: row;
-  padding-left: 0px;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .profile-followers li {
   margin: 0px 10px 0px 0px;
+  overflow: auto;
 }
+
+.unfollow-btn {
+  background-color: #76323f;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
+}
+
+.unfollow-btn:hover {
+  background-color: #a80e2a;
+}
+
+.follow-btn {
+  background-color: #228B22;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
+}
+
+.follow-btn:hover {
+  background-color: #09532b;
+}
+
 
 .username-profile {
   color: #565656;
@@ -302,6 +324,7 @@ ul {
   /* background-color: white; */
   background-color: white;
   border-radius: 10px;
+  box-shadow: 0 2px 13px -8px #777;
 }
 
 .user-info-top {
@@ -363,11 +386,38 @@ ul {
   text-decoration: none;
 }
 
-.review-container, .discussion-container {
+/* .review-container, .discussion-container {
   padding: 20px 25px 50px 25px;
-  /* background-color: white; */
   background-color: #F5F5F5;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  max-height: 18vw;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.review-container div, .discussion-container div {
+  width: 20vw;
+  display: inline-block;
+} */
+
+.review-container ul, .discussion-container ul {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.review-container li, .discussion-container li {
+  display: inline-block;
+}
+
+.review-container img, .discussion-container img {
+  width: 153.59px;
+  height: 236.38px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px -4px #777;
 }
 
 .section-header {

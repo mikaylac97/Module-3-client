@@ -189,30 +189,26 @@ export default class UserProfile extends Component {
                 <div className='row user-info-top'>
                     <div className='profile-name-img'>
                         <img src={this.state.profile_picture} alt='user-avi' className='usr-avi-timeline'/>
-                        <h2 className='username-profile'>{this.state.userName}</h2>
+                        <h4 className='username-profile'>{this.state.userName}</h4>
                     </div>
                     <div className='user-info-right'>
-                    {!isMyProfile && isFollowing && <li>
-                            <button onClick={this.handleFollowAndUnfollow}>Unfollow</button>
-                                 </li>}
-                                 {!isMyProfile && !isFollowing && <li>
-                                     <button onClick={this.handleFollowAndUnfollow}>Follow</button>
-                                 </li>}
+                    {!isMyProfile && isFollowing && <>
+                            <button onClick={this.handleFollowAndUnfollow} className='unfollow-btn'>Unfollow</button>
+                                 </>}
+                                 {!isMyProfile && !isFollowing && <>
+                                     <button onClick={this.handleFollowAndUnfollow} className='follow-btn'>Follow</button>
+                                 </>}
                     {isMyProfile && <>
                         <Link to={`/account/${this.props.user?.user?._id}`}><img src="https://img.icons8.com/pastel-glyph/64/000000/edit--v1.png" alt='edit-profile'/></Link>
                     </>}
                     </div>
                 </div>
-                <div className='row'>
+                {/* <div className='row'>
                     <ul className='profile-followers'>
                         <li>{this.state.followers.length} Followers</li>
                         <li>{this.state.following.length} Following</li>
                     </ul>
-                </div>
-                <div className='row user-profile-bio'>
-                    <p className='user-bio'>{this.state.bio}</p>
-                </div>
-                <hr />
+                </div> */}
                 <div className='row'>
                     <ul className='profile-links'>
                         <li>
@@ -229,6 +225,35 @@ export default class UserProfile extends Component {
                         </li>
                     </ul>
                 </div>
+                <div className='row user-profile-bio'>
+                    <p className='user-bio'>{this.state.bio}</p>
+                </div>
+                <hr />
+                <div className='row'>
+                <div className='usr-follow'>
+                                <div className='user-followers'>
+                                     <p>{this.state.followers.length} Followers</p>
+                                     {this.state.followers.map(follower => {
+                                         return(
+                                             <Link to={`/profile/${follower?._id}`}>
+                                             <img src={follower?.photo} alt='usr-avi' className='user-avi-side'/>
+                                             </Link>
+                                         )
+                                     })}
+                                  </div>
+                                  <div className='user-following'>
+                                     <p>{this.state.following.length} Following</p>
+                                     {this.state.following.map(following => {
+                                         return(
+                                             <Link to={`/profile/${following?._id}`}>
+                                                 <img src={following?.photo} alt='usr-avi' className='user-avi-side'/>
+                                             </Link>
+                                         )
+                                     })}
+                                  </div>
+                                  
+                             </div>
+                </div>
             </div>
         </div>
         <div className='col-lg-8'>
@@ -238,17 +263,19 @@ export default class UserProfile extends Component {
                             </div>
                            
                             <div className='row review-container'>
-                            {slicedReviews.map(review => {
+                            <ul>
+                            {this.state.reviews.map(review => {
                                 return(
                                    
-                                <div className="col-sm-3">
+                                <li>
                                     <Link to={`/reviewinfo/${review._id}`}>
-                                        <img src={review.book.image_url} alt='book-cover'/>
+                                        <img src={review.book?.image_url} alt='book-cover'/>
                                     </Link>
                                     
-                                </div>
+                                </li>
                             )})}
-                                
+                            </ul>
+                               
                             </div>
                         </div>
                         <div className='container testing-style'>
@@ -256,25 +283,18 @@ export default class UserProfile extends Component {
                                 <h3 className='username-profile'>Recent Discussions</h3>
                             </div>
                             <div className='row discussion-container'>
-                            {slicedDiscussions.map(discussion => {
+                            <ul>
+                            {this.state.discussions.map(discussion => {
                                 return(
                                    
-                                <div className="col-sm-3">
-                                    {/* <div class="card" style={{width: "18rem;"}}>
-                                    <img class="card-img-top" src={discussion.book.image_url} alt="Card cap" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">{discussion.title}</h5>
-                                        <p class="card-text">{discussion.discussionContent}</p>
-                                    </div>
-                                    <div class="card-body">
-                                        <Link to={`discussinfo/${discussion._id}`} className="card-link">Details</Link>
-                                    </div>
-                                    </div> */}
+                                <li>
                                     <Link to={`/discussinfo/${discussion._id}`}>
                                         <img src={discussion.book.image_url} alt='book-cover'/>
                                     </Link>
-                                </div>
+                                </li>
                             )})}
+                            </ul>
+                            
                                 
                 </div>
             </div>
