@@ -63,7 +63,7 @@ export default class App extends Component {
     
       <NavBar user={this.state.currentUser} onUserChange={this.updateUser}/>
           <Switch>
-            <Route exact path='/' component={Landing} />
+            <Route exact path='/' render={props => <Landing {...props} user={this.state.currentUser} onUserChange={this.updateUser}/>} />
             <Route exact path='/search' render={props => <Search {...props} />} />
             <Route exact path='/signup' render={props => <Signup {...props} />} />
             <Route exact path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />
