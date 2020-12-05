@@ -794,7 +794,7 @@ footer {
 .user-stats {
   position: fixed;
   color: #565656;
-  width: fit-content;
+  max-width: 280px;
   padding-top: 30px;
   z-index: 1;
 }
