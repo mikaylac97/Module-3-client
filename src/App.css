@@ -449,13 +449,14 @@ ul {
 }
 
 .timeline-item {
-  /* background-color: #F5F5F5; */
-  background-color: white;
+  background-color: #F5F5F5;
+  /* background-color: white; */
   padding: 20px 20px;
   margin-bottom: 20px;
   color: #565656;
   border-radius: 10px;
-  box-shadow: 0 10px 15px -6px #777;
+  border: 1px solid lightgray;
+  /* box-shadow: 0 10px 15px -6px #777; */
 }
 
 .usr-info-timeline {
@@ -465,6 +466,18 @@ ul {
   /* margin: 0px 10px; */
   margin-bottom: 10px;
   margin-left: 10px;
+}
+
+.usr-info-timeline img {
+  margin-right: 10px;
+}
+
+.usr-info-timeline a {
+  color: #565656;
+}
+
+.usr-info-timeline a:hover {
+  color: #76323f;
 }
 
 
@@ -725,6 +738,7 @@ footer {
 .post-book-img {
   max-width: 128px;
   max-height: 229px;
+  margin-right: 20px;
 }
 
 .all-discuss {
@@ -792,7 +806,7 @@ footer {
 }
 
 .user-stats {
-  position: fixed;
+  /* position: fixed; */
   color: #565656;
   max-width: 280px;
   padding-top: 30px;

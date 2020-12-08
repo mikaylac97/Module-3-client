@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Login from './Authentication/Login'
 import Signup from './Authentication/Signup'
 import Search from './Search'
+import AUTH_SERVICE from '../services/AuthService'
 // import NavBar from './NavBar'
 // import Signup from './Authentication/Signup'
 // import Login from './Authentication/Login'
@@ -22,7 +23,23 @@ export default class Landing extends Component {
         })
     }
 
+    updateUser = user => {
+        // this.setState({ currentUser: user })
+        AUTH_SERVICE.getAuthenticatedUser()
+        .then(responseFromServer => {
+          console.log(`auth user in App.js ${responseFromServer}`)
+          this.setState({
+            currentUser: responseFromServer.data
+          })
+        })
+        .catch(err => { 
+          console.log('error in update user', err);
+          this.setState({currentUser: null});
+        });
+      }
+
     render() {
+        console.log(this.props.user?.user)
         return (
             <div className='container-desktop'>
                 <div className='row landing-cover'>
@@ -93,7 +110,7 @@ export default class Landing extends Component {
                         </>}
                         {!this.state.newHere && <>
                             <h2>Login</h2>
-                            <Login />
+                            <Login user={this.props.user?.user} onUserChange={this.updateUser}/>
                             <hr />
                             <Link to='/' onClick={event => this.handleNewHereState(event)}>New here? Create an account for free!</Link>
                         </>}

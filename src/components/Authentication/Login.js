@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import AUTH_SERVICE from '../../services/AuthService';
 
@@ -18,7 +18,7 @@ export default class Login extends React.Component {
 
 
   handleFormSubmission = event => {
-    event.preventDefault();
+    event.preventDefault(); 
 
     const { email, password } = this.state;
 
