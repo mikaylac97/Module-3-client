@@ -83,13 +83,26 @@ export default class BookDetails extends Component {
                     </div>
                 </div>
                 <div className='row'>
-                    <div>
-                        {/* <h2>Reviews</h2> */}
-                        {/* {book.reviews.map(review => {
-                            return(
-                                <p>{review._id}</p>
-                            )
-                        })} */}
+                    <div className='col-lg-9'>
+                        <h2>Bookr Reviews</h2>
+                        {book.reviews?.length > 0 && <>
+                            {book.reviews.map(review => {
+                                return(
+                                    <div>
+
+                                    </div>
+                                )
+                            })}
+                        </>}
+                        {book.reviews?.length === 0 && <div>
+                            Be the first to write a review!
+                        </div>}
+                    </div>
+                    <div className='col-lg-3'>
+                        <h3>Discussions</h3>
+                        {book.discussions?.length > 0 && <>
+                            {book.discussions.map()}
+                        </>}
                     </div>
                 </div>
                 {/* <img src={book.image_url} alt='book-cover' />
