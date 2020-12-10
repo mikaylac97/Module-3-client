@@ -18,7 +18,7 @@ const AUTH_SERVICE = {
         return service.post('/api/logout', {})
     },
     getAuthenticatedUser() {
-        console.log({baseURL, env: process.env})
+        // console.log({baseURL, env: process.env})
         return service.get('/api/isLoggedIn')
     }
 }

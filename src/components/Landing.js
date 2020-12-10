@@ -11,10 +11,13 @@ import AUTH_SERVICE from '../services/AuthService'
 
 
 export default class Landing extends Component {
-
+    
     state = {
-        newHere: true
+        newHere: true,
+        currentUser: null
     }
+
+
 
     handleNewHereState = (event) => {
         event.preventDefault();
@@ -24,7 +27,7 @@ export default class Landing extends Component {
     }
 
     updateUser = user => {
-        // this.setState({ currentUser: user })
+        
         AUTH_SERVICE.getAuthenticatedUser()
         .then(responseFromServer => {
           console.log(`auth user in App.js ${responseFromServer}`)
@@ -38,8 +41,38 @@ export default class Landing extends Component {
         });
       }
 
+    // handleInputChange = event => {
+    //     const { name, value } = event.target;
+    //     this.setState({ [name]: value });
+    // }
+
+    // handleFormSubmission = event => {
+    //     event.preventDefault(); 
+    //     const { email, password } = this.state;
+    
+    //     AUTH_SERVICE.login({ email, password })
+    //       .then(responseFromServer => {
+           
+    //         const { user } = responseFromServer.data;
+            
+    //         // Lift the user object to the App.js
+    //         this.props.onUserChange(user);
+    
+    //         // Redirect user to home page after successful sign up
+    //         this.props.history.push(`/profile/${user?.user?._id}`);
+        
+    //       })
+    //       .catch(err => {
+    //         if (err.response && err.response.data) {
+    //           return this.setState({ message: err.response.data.message });
+    //         }
+    //       });
+    //   };
+
+
+
     render() {
-        console.log(this.props.user?.user)
+       console.log(this.props.state)
         return (
             <div className='container-desktop'>
                 <div className='row landing-cover'>
@@ -51,7 +84,7 @@ export default class Landing extends Component {
                         {!this.state.newHere && <>
                             <div className='landing-login'>
                                 <h3>Welcome to Bookr</h3>
-                                <Login />
+                                <Login updateUserOnLanding={this.updateUser}/>
                                 <hr />
                             </div>
                             <div>

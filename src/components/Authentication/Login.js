@@ -24,15 +24,15 @@ export default class Login extends React.Component {
 
     AUTH_SERVICE.login({ email, password })
       .then(responseFromServer => {
-        // console.log(responseFromServer.data)
+       
         const { user } = responseFromServer.data;
-        // console.log(this.props)
+        
         // Lift the user object to the App.js
         this.props.onUserChange(user);
 
         // Redirect user to home page after successful sign up
         this.props.history.push(`/profile/${user._id}`);
-        console.log('this was called')
+    
       })
       .catch(err => {
         if (err.response && err.response.data) {

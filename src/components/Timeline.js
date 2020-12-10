@@ -25,6 +25,7 @@ export default class Timeline extends Component {
             .catch(err => console.log(err))
     }
 
+
     switchToDiscussionsView = () => {
         this.setState({
             viewingDiscussions: !this.state.viewingDiscussions

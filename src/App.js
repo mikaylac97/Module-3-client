@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import Landing from './components/Landing'
-import Signup from './components/Authentication/Signup'
-import Login from './components/Authentication/Login'
+// import Signup from './components/Authentication/Signup'
+// import Login from './components/Authentication/Login'
 import AUTH_SERVICE from './services/AuthService'
 import Search from './components/Search'
 import UserProfile from './components/UserProfile'
@@ -52,9 +52,6 @@ export default class App extends Component {
     });
   }
 
-  // updateUserReviews = review => {
-  
-  // }
 
   render() {
     console.log('user in client', this.state.currentUser)
@@ -65,8 +62,8 @@ export default class App extends Component {
           <Switch>
             <Route exact path='/' render={props => <Landing {...props} user={this.state.currentUser} onUserChange={this.updateUser}/>} />
             <Route exact path='/search' render={props => <Search {...props} />} />
-            <Route exact path='/signup' render={props => <Signup {...props} />} />
-            <Route exact path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />
+            {/* <Route exact path='/signup' render={props => <Signup {...props} />} />
+            <Route exact path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} /> */}
             <Route exact path='/profile/:accountId' render={props => <UserProfile {...props} user={this.state.currentUser} onUserChange={this.updateUser} /> }/>
             <Route exact path='/account/:accountId' render={props => <AccountDetails {...props} user={this.state.currentUser} onUserChange={this.updateUser} />} />
             <Route exact path='/shelves/:accountId' render={props => <Bookshelves {...props} user={this.state.currentUser} /> } />
@@ -80,7 +77,7 @@ export default class App extends Component {
             <Route exact path='/following/:accountId' component={Following} />
             <Route exact path='/bookinfo/:bookId' render={props => <BookDetails {...props} user={this.state.currentUser} /> } />
             {/* <Route exact path='/home' render={props => <Timeline {...props} user={this.state.currentUser} /> } /> */}
-            <Route exact path='/home' render={props => <Timeline {...props} user={this.state.currentUser} />} />
+            <Route exact path='/home' render={props => <Timeline {...props} user={this.state.currentUser} onUserChange={this.updateUser}/>} />
             {/* <Route exact path='/review/:bookId' render={props => <CreateReview {...props} user={this.state.currentUser} />} />
             <Route exact path='/discuss/:bookId' render={props => <CreateDiscussion {...props} user={this.state.currentUser} />} /> */}
           </Switch>

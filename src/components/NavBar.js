@@ -38,7 +38,7 @@ export default class NavBar extends Component {
             //     this.setState({
             //     isLoggedIn: false
             // })
-            // this.props.history.push('/');
+            
         })
             .catch(err => console.log(err))
     }
