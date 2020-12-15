@@ -66,20 +66,31 @@ export default class BookDetails extends Component {
                     <Link to={`/review/${book._id}`}>
                     Write a Review
                     </Link>
-                </button>
-                <button>
+                    </button>
+                    <button>
                     <Link to={`/discuss/${book._id}`}>
                     Start a Discussion
                     </Link>
-                </button>
+                    </button>
                 <button onClick={event => this.addToWantToRead(event)}>Add to want to read shelf</button>
                 <button onClick={event => this.addToHasRead(event)}>Add to has read shelf</button>
                     </div>
                     <div className='col-lg-9'>
-                    <h1>{book.title}</h1>
-                    <h3>{book.subtitle}</h3>
-                    <p>by: {book.authors}</p>
-                    <p>{book.description}</p>
+                    <div>
+                        <h1>{book.title}</h1>
+                        <h3>{book.subtitle}</h3>
+                        <p>by: {book.authors}</p>
+                    </div>
+                    <div className='shelfdropdown'>
+                        <img src="https://img.icons8.com/ios/50/000000/add-book.png" alt='book-add' className='dropbtn'/>
+                        <div className='shelflinks'>
+                            <Link onClick={event => this.addToWantToRead(event)} className='shelf-dropdown-links'>Mark as want to read</Link>
+                            <Link onClick={event => this.addToHasRead(event)} className='shelf-dropdown-links'>Mark as has read</Link>
+                        </div>
+                    </div>
+                    <div>
+                        <p>{book.description}</p>
+                    </div>
                     </div>
                 </div>
                 <div className='row'>
@@ -89,7 +100,7 @@ export default class BookDetails extends Component {
                             {book.reviews.map(review => {
                                 return(
                                     <div>
-
+                                        {review?.author}
                                     </div>
                                 )
                             })}
@@ -100,8 +111,16 @@ export default class BookDetails extends Component {
                     </div>
                     <div className='col-lg-3'>
                         <h3>Discussions</h3>
-                        {book.discussions?.length > 0 && <>
-                            {book.discussions.map()}
+                        {book?.discussions?.length > 0 && <>
+                            {book?.discussions?.map(
+                                discussion => {
+                                    return(
+                                        <div>
+                                            {discussion?.title} by {discussion?.author}
+                                        </div>
+                                    )
+                                }
+                            )}
                         </>}
                     </div>
                 </div>
