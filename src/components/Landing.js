@@ -17,7 +17,9 @@ export default class Landing extends Component {
         currentUser: null
     }
 
-
+    componentDidMount(){
+        this.updateUser(this.state.currentUser);
+    }
 
     handleNewHereState = (event) => {
         event.preventDefault();
