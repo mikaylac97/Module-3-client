@@ -886,3 +886,11 @@ footer {
 .shelf-dropdown-links:hover {
   background-color: #ddd;
 }
+
+.book-cover {
+  width: 153.59px;
+  height: 236.38px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px -4px #777;
+}

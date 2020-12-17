@@ -50,9 +50,10 @@ export default class NavBar extends Component {
         console.log({props: this.props})
         return (
             <nav className="navbar navbar-light nav-font">
-                <div>
+                {this.props.user && <div>
                     <Link to='/home' className='home-btn'><h2>BOOKR.</h2></Link>
-                </div>
+                </div>}
+                {this.props.user === null && <div><Link to='/' className='home-btn'><h2>BOOKR.</h2></Link></div>}
                 {this.props.user && 
                 <>
                     <div>

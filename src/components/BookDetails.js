@@ -61,8 +61,8 @@ export default class BookDetails extends Component {
             <div className='container'>
                 <div className='row'>
                     <div className='col-lg-3'>
-                    <img src={book.image_url} alt='book-cover' />
-                    <button>
+                    <img src={book.image_url} className='book-cover' alt='book-cover' />
+                    {/* <button>
                     <Link to={`/review/${book._id}`}>
                     Write a Review
                     </Link>
@@ -71,9 +71,9 @@ export default class BookDetails extends Component {
                     <Link to={`/discuss/${book._id}`}>
                     Start a Discussion
                     </Link>
-                    </button>
-                <button onClick={event => this.addToWantToRead(event)}>Add to want to read shelf</button>
-                <button onClick={event => this.addToHasRead(event)}>Add to has read shelf</button>
+                    </button> */}
+                {/* <button onClick={event => this.addToWantToRead(event)}>Add to want to read shelf</button>
+                <button onClick={event => this.addToHasRead(event)}>Add to has read shelf</button> */}
                     </div>
                     <div className='col-lg-9'>
                     <div>
@@ -81,13 +81,13 @@ export default class BookDetails extends Component {
                         <h3>{book.subtitle}</h3>
                         <p>by: {book.authors}</p>
                     </div>
-                    <div className='shelfdropdown'>
+                    {this.props.user?.user && <div className='shelfdropdown'>
                         <img src="https://img.icons8.com/ios/50/000000/add-book.png" alt='book-add' className='dropbtn'/>
                         <div className='shelflinks'>
                             <Link onClick={event => this.addToWantToRead(event)} className='shelf-dropdown-links'>Mark as want to read</Link>
                             <Link onClick={event => this.addToHasRead(event)} className='shelf-dropdown-links'>Mark as has read</Link>
                         </div>
-                    </div>
+                    </div>}
                     <div>
                         <p>{book.description}</p>
                     </div>
@@ -105,9 +105,10 @@ export default class BookDetails extends Component {
                                 )
                             })}
                         </>}
-                        {book.reviews?.length === 0 && <div>
-                            Be the first to write a review!
+                        {this.props.user?.user && book.reviews?.length === 0 && <div>
+                            Be the first to <Link to={`/review/${book._id}`}>write a review</Link>!
                         </div>}
+                        {!this.props.user?.user && <div><Link to='/'>Log in</Link> to write a review!</div>}
                     </div>
                     <div className='col-lg-3'>
                         <h3>Discussions</h3>
@@ -122,6 +123,10 @@ export default class BookDetails extends Component {
                                 }
                             )}
                         </>}
+                        {this.props.user?.user && book.discussions?.length === 0 && <div>
+                            Be the first to <Link to={`/discuss/${book._id}`}>write a discussion</Link>!
+                        </div>}
+                        {!this.props.user?.user && <div><Link to='/'>Log in</Link> to write a discussion!</div>}
                     </div>
                 </div>
                 {/* <img src={book.image_url} alt='book-cover' />
