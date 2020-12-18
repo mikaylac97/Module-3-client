@@ -52,7 +52,7 @@ ul {
 /*  LANDING STYLES  */
 
 .landing-cover {
-  background-image: url('https://media.istockphoto.com/photos/composition-with-books-on-the-table-picture-id1158413597?k=6&m=1158413597&s=612x612&w=0&h=bmVCZh_ephJcCbbzAw0bFNk0KYlDL4k_4a5xZeFcqaw='), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+  background-image: url('./istockphoto-1158413597-612x612.jpg'), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
   background-blend-mode: overlay;
   height: 500px;
   background-position: center;

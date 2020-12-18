@@ -25,7 +25,7 @@ export default class Signup extends React.Component {
         const { user } = responseFromServer.data;
 
         // Lift the user object to the App.js
-        // this.props.onUserChange(user);
+        this.props.onUserChange(user);
 
         // Redirect user to home page after successful sign up
         this.props.history.push(`/profile/${user._id}`);

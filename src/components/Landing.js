@@ -96,7 +96,7 @@ export default class Landing extends Component {
                         {this.state.newHere && <div>
                         <div className='landing-login'>
                             <h3>Sign up and start reading today!</h3>
-                            <Signup />
+                            <Signup {...this.props} onUserChange={this.props.onUserChange}/>
                             <hr />
                         </div>
                         <div>
@@ -139,13 +139,13 @@ export default class Landing extends Component {
                     <div className='col-lg-4 try-search'>
                         {this.state.newHere && <>
                             <h2>Get started</h2>
-                            <Signup />
+                            <Signup {...this.props} onUserChange={this.props.onUserChange}/>
                             <hr />
                             <Link to='/' onClick={event => this.handleNewHereState(event)}>Already have an account? Log in</Link>
                         </>}
                         {!this.state.newHere && <>
                             <h2>Login</h2>
-                            <Login user={this.props.user?.user} {...this.props} onUserChange={this.updateUser}/>
+                            <Login {...this.props} onUserChange={this.props.onUserChange}/>
                             <hr />
                             <Link to='/' onClick={event => this.handleNewHereState(event)}>New here? Create an account for free!</Link>
                         </>}
