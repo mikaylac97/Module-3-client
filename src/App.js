@@ -52,6 +52,11 @@ export default class App extends Component {
     });
   }
 
+  setUser = user => {
+    this.setState({
+      currentUser: user
+    })
+  }
 
   render() {
     console.log('user in client', this.state.currentUser)
@@ -60,7 +65,7 @@ export default class App extends Component {
     
       <NavBar user={this.state.currentUser} onUserChange={this.updateUser}/>
           <Switch>
-            <Route exact path='/' render={props => <Landing {...props} user={this.state.currentUser} onUserChange={this.updateUser}/>} />
+            <Route exact path='/' render={props => <Landing {...props} user={this.state.currentUser} onUserChange={this.setUser}/>} />
             <Route exact path='/search' render={props => <Search {...props} />} />
             {/* <Route exact path='/signup' render={props => <Signup {...props} />} />
             <Route exact path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} /> */}

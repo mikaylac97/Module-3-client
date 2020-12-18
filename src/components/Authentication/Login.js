@@ -26,7 +26,7 @@ export default class Login extends React.Component {
       .then(responseFromServer => {
        
         const { user } = responseFromServer.data;
-        
+        console.log(this.props);
         // Lift the user object to the App.js
         this.props.onUserChange(user);
 

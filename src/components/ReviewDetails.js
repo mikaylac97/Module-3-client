@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ACCOUNT_SERVICE from '../services/UserInfoService'
 
 export default class ReviewDetails extends Component {
@@ -60,20 +61,21 @@ export default class ReviewDetails extends Component {
         const isMyProfile = this.props?.user?.user?._id.toString() === review.author?._id
         console.log(review)
         return (
-            <div>
-                <div>
-                    <div>
+            <div className='f5backgroundcolor'>
+            <div className='container details-container'>
+                <div className='row'>
+                    <div className='usr-info-timeline'>
                         <img src={review.author?.photo} alt='user-avi' className='usr-avi-timeline' />
-                        <p>{review.author?.username}</p>
+                        <Link to={`/profile/${review.author?._id}`}>{review.author?.username}</Link>
                     </div>
                     {isMyProfile && !this.state.editMode && <div>
                         <button onClick={this.handleEditMode}>Edit Review</button>
                         <button onClick={event => this.deleteReview(event)}>Delete Review</button>
                     </div>}
                 </div>
-                <div>
+                <div className='row'>
                     <div>
-                        <img src={review.book?.image_url} alt='book-cover' className='book-cover-timeline' />
+                        <img src={review.book?.image_url} alt='book-cover' className='book-cover' />
                     </div>
                     <div>
                         <h3>{review.book?.title}</h3>
@@ -83,7 +85,7 @@ export default class ReviewDetails extends Component {
                 </div>
                 {isMyProfile && !this.state.editMode && <div>
                     User Rating: {review.numOfStars} / 5
-                    <p>{review.content}</p>
+                    <p style={{marginBottom: '0rem'}}>{review.content}</p>
                 </div>}
                 {isMyProfile && this.state.editMode &&
                     <div key={review._id}>
@@ -101,6 +103,7 @@ export default class ReviewDetails extends Component {
                         </div> 
                 }
             </div>
+        </div>
         )
     }
 }

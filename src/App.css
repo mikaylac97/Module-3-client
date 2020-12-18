@@ -894,3 +894,14 @@ footer {
   border-radius: 10px;
   box-shadow: 0 2px 12px -4px #777;
 }
+
+/*  REVIEW DETAILS PAGE  */
+
+.f5backgroundcolor {
+  background-color: #f5f5f5;
+}
+
+.details-container {
+  background-color: white;
+  padding: 30px 50px;
+}

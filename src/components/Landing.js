@@ -86,7 +86,7 @@ export default class Landing extends Component {
                         {!this.state.newHere && <>
                             <div className='landing-login'>
                                 <h3>Welcome to Bookr</h3>
-                                <Login updateUserOnLanding={this.updateUser}/>
+                                <Login {...this.props} onUserChange={this.props.onUserChange}/>
                                 <hr />
                             </div>
                             <div>
@@ -145,7 +145,7 @@ export default class Landing extends Component {
                         </>}
                         {!this.state.newHere && <>
                             <h2>Login</h2>
-                            <Login user={this.props.user?.user} onUserChange={this.updateUser}/>
+                            <Login user={this.props.user?.user} {...this.props} onUserChange={this.updateUser}/>
                             <hr />
                             <Link to='/' onClick={event => this.handleNewHereState(event)}>New here? Create an account for free!</Link>
                         </>}
