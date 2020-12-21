@@ -61,19 +61,20 @@ export default class ReviewDetails extends Component {
         const isMyProfile = this.props?.user?.user?._id.toString() === review.author?._id
         console.log(review)
         return (
-            <div className='f5backgroundcolor'>
+            <div className='f5backgroundcolor container-fluid'>
+            <div className='row'>
             <div className='container details-container'>
-                <div className='row'>
-                    <div className='usr-info-timeline'>
+                <div className='row review-user'>
+                    <div className='usr-info-timeline to-left'>
                         <img src={review.author?.photo} alt='user-avi' className='usr-avi-timeline' />
                         <Link to={`/profile/${review.author?._id}`}>{review.author?.username}</Link>
                     </div>
-                    {isMyProfile && !this.state.editMode && <div>
-                        <button onClick={this.handleEditMode}>Edit Review</button>
-                        <button onClick={event => this.deleteReview(event)}>Delete Review</button>
+                    {isMyProfile && !this.state.editMode && <div className='to-right'>
+                        <button className='details-btn' onClick={this.handleEditMode}>Edit Review</button>
+                        <button className='review-dlt-btn' onClick={event => this.deleteReview(event)}>Delete Review</button>
                     </div>}
                 </div>
-                <div className='row'>
+                <div className='row book-info'>
                     <div>
                         <img src={review.book?.image_url} alt='book-cover' className='book-cover' />
                     </div>
@@ -83,10 +84,15 @@ export default class ReviewDetails extends Component {
                         <p>Written by: {review.book?.authors}</p>
                     </div>
                 </div>
-                {isMyProfile && !this.state.editMode && <div>
-                    User Rating: {review.numOfStars} / 5
-                    <p style={{marginBottom: '0rem'}}>{review.content}</p>
-                </div>}
+                {isMyProfile && !this.state.editMode && 
+                <>
+                <div className='row'>
+                    <p>User Rating: {review?.numOfStars} / 5</p>
+                </div>
+                <div className='row'>
+                    <p>{review?.content}</p>
+                </div>
+                </>}
                 {isMyProfile && this.state.editMode &&
                     <div key={review._id}>
                             <form onSubmit={(event) => this.saveEditChanges(event)}>
@@ -102,6 +108,7 @@ export default class ReviewDetails extends Component {
                             </form>
                         </div> 
                 }
+                </div>
             </div>
         </div>
         )

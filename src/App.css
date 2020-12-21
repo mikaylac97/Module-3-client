@@ -648,11 +648,13 @@ footer {
   padding: 8px 20px;
   border-radius: 3px;
   transition: 0.5s ease;
+  color: white;
 }
 
 .details-btn:hover {
   background-color: transparent;
   border: 2px solid #c09f80;
+  color: #c09f80;
 }
 
 .details-btn:hover .link-white-txt {
@@ -904,4 +906,15 @@ footer {
 .details-container {
   background-color: white;
   padding: 30px 50px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  box-shadow: 0 2px 12px -4px #777;
+  border-radius: 10px;
+}
+
+.book-info {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid lightgray;
 }
