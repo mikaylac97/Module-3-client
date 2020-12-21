@@ -449,14 +449,14 @@ ul {
 }
 
 .timeline-item {
-  background-color: #F5F5F5;
-  /* background-color: white; */
+  /* background-color: #F5F5F5; */
+  background-color: white;
   padding: 20px 20px;
   margin-bottom: 20px;
   color: #565656;
   border-radius: 10px;
-  border: 1px solid lightgray;
-  /* box-shadow: 0 10px 15px -6px #777; */
+  /* border: 1px solid lightgray; */
+  box-shadow: 0 2px 13px -8px #777;
 }
 
 .usr-info-timeline {
@@ -611,6 +611,8 @@ footer {
   background-color: white;
   padding: 30px;
   margin: 20px auto;
+  box-shadow: 0 2px 13px -8px #777;
+  border-radius: 10px;
 }
 
 .review-user {
@@ -828,6 +830,7 @@ footer {
 
 .main-content {
   padding: 30px 40px;
+  background-color: #f5f5f5;
 }
 
 .follow-stats-tl {
@@ -908,7 +911,7 @@ footer {
   padding: 30px 50px;
   margin-top: 50px;
   margin-bottom: 70px;
-  box-shadow: 0 2px 12px -4px #777;
+  box-shadow: 0 2px 13px -8px #777;
   border-radius: 10px;
 }
 
