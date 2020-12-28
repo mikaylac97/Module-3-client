@@ -83,7 +83,8 @@ export default class Timeline extends Component {
                                                     <img src={review.book?.image_url} alt='book-cvr' />
                                                 </div>
                                                 <div className='post-text-content col-md-9'>
-                                                    <h4>{review.book?.title} by: {review.book?.authors}</h4>
+                                                <Link to={`/bookinfo/${review?.book?.google_books_id}`} className='tl-links'><h4>{review.book?.title}</h4></Link>    
+                                                    <h5>By {review?.book?.authors}</h5>
                                                     {review.numOfStars === 1 && <p>★☆☆☆☆</p>}
                                                     {review.numOfStars === 2 && <p>★★☆☆☆</p>}
                                                     {review.numOfStars === 3 && <p>★★★☆☆</p>}
@@ -118,7 +119,8 @@ export default class Timeline extends Component {
                                                     <img src={discussion.book?.image_url} alt='book-cvr' />
                                                 </div>
                                                 <div className='post-text-content col-md-9'>
-                                                    <h4>{discussion.book?.title} by: {discussion.book?.authors}</h4>
+                                                <Link to={`/bookinfo/${discussion?.book?.google_books_id}`} className='tl-links'><h4>{discussion.book?.title}</h4></Link>  
+                                                    <h5>By {discussion.book?.authors}</h5>
                                                     <h5>{discussion.title}</h5>
                                                     <p>{discussion.discussionContent || discussion.content}</p>
                                                 </div>
