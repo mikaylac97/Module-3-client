@@ -66,7 +66,10 @@ export default class Timeline extends Component {
                         </div>
                     </div>
                     <div className='col-lg-9 main-content'>
-                    {!this.state.viewingDiscussions && <div>
+                    {this.state.usersTheyFollowAndPosts.length === 0 && <div>
+                        <h2 className='noshelves'>Nothing to see here yet! Follow users to view their posts.</h2>
+                    </div>}
+                    {this.state.usersTheyFollowAndPosts.length > 0 && !this.state.viewingDiscussions && <div>
                     <h2>Reviews from people you follow</h2>
                         {this.state.usersTheyFollowAndPosts.map(personTheyFollow => {
                             return(
@@ -102,7 +105,7 @@ export default class Timeline extends Component {
                             
                         })}
                         </div>}
-                        {this.state.viewingDiscussions && <div>
+                        {this.state.usersTheyFollowAndPosts.length > 0 && this.state.viewingDiscussions && <div>
                             <h2>Discussions from people you follow</h2>
                             {this.state.usersTheyFollowAndPosts.map(personTheyFollow => {
                                 return(
