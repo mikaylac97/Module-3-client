@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ACCOUNT_SERVICE from '../services/UserInfoService'
 
 export default class Bookshelves extends Component {
@@ -60,6 +61,9 @@ export default class Bookshelves extends Component {
         return (
         <div className='container-fluid site-container'>
             <div className='row'>
+                {this.state.booksHasRead.length === 0 && this.state.booksWantsToRead.length === 0 && <div className='noshelves'>
+                   <h2><Link to={`/profile/${this.state.user_id}`} className='thread-link'>{this.state.username}</Link> has no books in their shelves yet.</h2>
+                </div>}
                 {this.state.booksHasRead.length > 0 && 
                 <div className='col-lg-6'>
                 <div className='container'>
