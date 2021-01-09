@@ -92,7 +92,7 @@ export default class Bookshelves extends Component {
                 <div className='row'>
                     {this.state.booksWantsToRead.map(book => {
                         return(
-                            <div className='hover-ctrl' key={book._id}>
+                            <div key={book._id}>
                                 <img src={book.image_url} className='bookshelf-item' alt='book-cvr' />
                                 {/* <button className='hover-btn' onClick={this.removeBookFromWantShelf} id={book._id}>Remove Book</button> */}
                                 {/* <img src="https://img.icons8.com/wired/64/000000/trash.png" alt='trash' className='hover-btn' onClick={this.removeBookFromWantShelf} id={book._id}/> */}
