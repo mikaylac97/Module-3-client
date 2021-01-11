@@ -15,8 +15,8 @@ export default function Footer() {
                 <ul>
                     <li className='foot-title'>CONNECT</li>
                     <div className='foot-imgs'>
-                        <li><img src="https://img.icons8.com/fluent/48/000000/github.png" alt='github'/></li>
-                        <li><img src="https://img.icons8.com/metro/26/000000/linkedin.png" alt='linkedin'/></li>
+                        <li><a href='https://github.com/mikaylac97'><img src="https://img.icons8.com/fluent/48/000000/github.png" alt='github'/></a></li>
+                        <li><a href='https://linkedin.com/in/mikaylacastro'><img src="https://img.icons8.com/metro/26/000000/linkedin.png" alt='linkedin'/></a></li>
                     </div>
                 </ul>
             </div>
