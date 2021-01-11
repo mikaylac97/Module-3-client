@@ -65,6 +65,8 @@ export default class AccountDetails extends Component {
             .then(editedUser => {
                 // this.fileInput.value='';
                 this.props.onUserChange(editedUser)
+                // console.log(editedUser.data.userFromDB._id)
+                this.props.history.push(`/profile/${editedUser?.data?.userFromDB?._id}`);
             })
             .catch(err => console.log(err))
     }
