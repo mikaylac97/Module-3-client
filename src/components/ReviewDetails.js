@@ -41,7 +41,13 @@ export default class ReviewDetails extends Component {
 
         ACCOUNT_SERVICE
             .updateReview(reviewId, { numOfStars, content })
-            .then(updatedReview => this.props.history.push(`/reviews/${this.props.user?.user?._id}`))
+            .then(updatedReview => {
+                this.setState({
+                    content: updatedReview.data.updatedReview.content,
+                    numOfStars: updatedReview.data.updatedReview.numOfStars
+                })
+            })
+            .then(readyToSwitchReview => this.setState({ editMode: false }))
             .catch(err => console.log(err))
     }
 
@@ -58,6 +64,7 @@ export default class ReviewDetails extends Component {
 
     render() {
         const { review } = this.state
+        const { content, numOfStars } = this.state
         const isMyProfile = this.props?.user?.user?._id.toString() === review.author?._id
         console.log(review)
         return (
@@ -87,15 +94,15 @@ export default class ReviewDetails extends Component {
                 {isMyProfile && !this.state.editMode && 
                 <>
                 <div className='row'>
-                    <p>User Rating: {review?.numOfStars} / 5</p>
+                    <p>User Rating: {numOfStars} / 5</p>
                 </div>
                 <div className='row'>
-                    <p>{review?.content}</p>
+                    <p>{content}</p>
                 </div>
                 </>}
                 {isMyProfile && this.state.editMode &&
                     <div key={review._id}>
-                            <form onSubmit={(event) => this.saveEditChanges(event)}>
+                            <form className='bookr-form' onSubmit={(event) => this.saveEditChanges(event)}>
                                 <label>
                                     Stars / 5
                                     <input type='number' min='0' max='5' name='numOfStars' value={this.state.numOfStars} onChange={this.handleInputChange}/>
