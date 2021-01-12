@@ -79,7 +79,7 @@ export default class ReviewDetails extends Component {
                         <img src={review.book?.image_url} alt='book-cover' className='book-cover' />
                     </div>
                     <div>
-                        <h3>{review.book?.title}</h3>
+                        <Link to={`/bookinfo/${review.book?.google_books_id}`} className='thread-link'><h3>{review.book?.title}</h3></Link>
                         <h4>{review.book?.subtitle}</h4>
                         <p>Written by: {review.book?.authors}</p>
                     </div>
