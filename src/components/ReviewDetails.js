@@ -102,7 +102,7 @@ export default class ReviewDetails extends Component {
                                 </label>
                                 <label>
                                     Review
-                                    <input type='text' name='content' value={this.state.content} onChange={this.handleInputChange}/>
+                                    <textarea rows="4" cols="50" type='text' name='content' value={this.state.content} onChange={this.handleInputChange}/>
                                 </label>
                                 <button id={review._id} type='submit'>Save Changes</button>
                             </form>
