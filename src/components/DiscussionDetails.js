@@ -71,7 +71,12 @@ export default class DiscussionDetails extends Component {
         const { replyContent } = this.state;
         ACCOUNT_SERVICE
             .replyToDiscussion(discussionId, { replyContent })
-            .then(updatedDiscussionWithReply => this.props.history.push(`/discussinfo/${discussionId}`))
+            .then(updatedDiscussionWithReply => {
+                console.log(updatedDiscussionWithReply)
+                this.setState({
+                    discussion: updatedDiscussionWithReply.data.updatedDiscussion
+                })
+            })
             .catch(err => console.log(err))
     }
 
