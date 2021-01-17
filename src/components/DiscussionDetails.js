@@ -80,7 +80,7 @@ export default class DiscussionDetails extends Component {
             .catch(err => console.log(err))
     }
 
-// work on this later
+// come back to work on this later
 
     render() {
        const { discussion } = this.state;
